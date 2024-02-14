@@ -1,15 +1,9 @@
-class Weather:
-    def __init__(self, date, day, result):
-        self.date = date
-        self.day = day
-        self.result = result
-    
 n = int(input())
-latest_info = Weather('2111-12-31', 'Wed', 'Rain')
+latest_info = ['2111-12-31', '', '']
 
 for _ in range(n):
-    weather = Weather(*input().split())
-    if weather.result == 'Rain' and latest_info.date > weather.date:
+    weather = input().split()
+    if weather[-1] == 'Rain' and latest_info[0] > weather[0]:
         latest_info = weather
 
-print(f'{latest_info.date} {latest_info.day} {latest_info.result}')
+print(*latest_info)
