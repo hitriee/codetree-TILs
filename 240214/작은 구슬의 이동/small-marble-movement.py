@@ -13,9 +13,9 @@ now = 0
 
 for now in range(1, t+1):
     nr, nc = r + dy[direct_idx], c + dx[direct_idx]
-    if not (1 <= nr <= n and 1 <= nc <= n):
-        direct_idx = 3 - direct_idx
-    else:
+    if 1 <= nr <= n and 1 <= nc <= n:
         r, c = nr, nc
+    else:
+        direct_idx = 3 - direct_idx
 
 print(r, c)
