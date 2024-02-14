@@ -3,9 +3,9 @@ class Agent:
         self.name = code_name
         self.score = int(score)
 
-agents = [Agent(*input().split()) for _ in range(5)]
 agent_name, min_score = '', 101
-for agent in agents:
+for _ in range(5):
+    agent = Agent(*input().split())
     if agent.score < min_score:
         min_score = agent.score
         agent_name = agent.name
