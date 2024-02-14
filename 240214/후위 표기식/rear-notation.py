@@ -5,8 +5,9 @@ stack = [numbers[formula[0]]]
 for i in range(1, len(formula)):
     element = formula[i]
     if element.isalpha():
-        stack.append(numbers[element])
-    else:
+        if numbers.get(element):
+            stack.append(numbers[element])
+    elif len(stack) >= 2:
         num2 = stack.pop()
         num1 = stack.pop()
         if element == '*':
