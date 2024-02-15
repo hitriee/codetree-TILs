@@ -1,5 +1,6 @@
 n = int(input())
 arr = list(map(int, input().split()))
+arr.sort()
 
-print(*sorted(arr))
-print(*sorted(arr, reverse=True))
+print(*arr)
+print(*reversed(arr))
