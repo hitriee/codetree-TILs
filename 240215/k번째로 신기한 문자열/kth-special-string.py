@@ -6,7 +6,7 @@ word_list = []
 for _ in range(n):
     word = input()
     if word[:limit] == T:
-        word_list.append(word)
+        word_list.append(word[limit:])
 
 word_list.sort()
-print(word_list[k-1])
+print(T+word_list[k-1])
