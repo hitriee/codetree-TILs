@@ -1,2 +1,2 @@
 alp_string = input()
-print(''.join(sorted(alp_string)))
+print(*sorted(alp_string), sep='')
