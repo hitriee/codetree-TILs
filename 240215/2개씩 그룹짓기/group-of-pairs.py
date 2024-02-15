@@ -1,14 +1,33 @@
 N = int(input())
 numbers = list(map(int, input().split()))
-numbers.sort()
+check = [0] * 1001
 
-left, right = 0, 2*N-1
+for num in numbers:
+    check[num] += 1
+
+left, right = 1, 1000
 max_total = 0
-while left < right:
-    total = numbers[left] + numbers[right]
+while True:
+    for i in range(left, right+1):
+        if check[i]:
+            left = i
+            break
+    else:
+        break
+    
+    check[left] -= 1
+
+    for i in range(right, left-1, -1):
+        if check[i]:
+            right = i
+            break
+    else:
+        break
+    
+    check[right] -= 1
+    
+    total = left + right
     if max_total < total:
         max_total = total
-    left += 1
-    right -= 1
 
 print(max_total)
