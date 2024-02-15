@@ -1,9 +1,14 @@
-from heapq import heapify, heappop
 N, k = map(int, input().split())
 numbers = list(map(int, input().split()))
-heapify(numbers)
+check = [0] * 1001
 
-for _ in range(k-1):
-    heappop(numbers)
+for number in numbers:
+    check[number] += 1
 
-print(numbers[0])
+cnt = 0
+for i in range(1, 1001):
+    if check[i]:
+        cnt += check[i]
+        if cnt >= k:
+            print(i)
+            break
