@@ -22,10 +22,10 @@ def find_time():
         dy *= duration
 
         if x == 0:
-            if dy * y < 0 and abs(dy) > abs(y):
+            if dy * y < 0 and abs(dy) >= abs(y):
                 return time+abs(y)
         elif y == 0:
-            if dx * x < 0 and abs(dx) > abs(x):
+            if dx * x < 0 and abs(dx) >= abs(x):
                 return time+abs(x)
         
         time += duration
