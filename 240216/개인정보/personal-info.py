@@ -5,13 +5,20 @@ class Person:
         self.w = weight
 
 people = [Person(*input().split()) for _ in range(5)]
-sorted_by_name = sorted(people, key=lambda person: person.n)
-sorted_by_height = sorted(people, key=lambda person: -person.h)
 
-print('name')
-for person in sorted_by_name:
-    print(f'{person.n} {person.h} {person.w}')
+def return_n(person):
+    return person.n
 
-print('\nheight')
-for person in sorted_by_height:
-    print(f'{person.n} {person.h} {person.w}')
+def return_h(person):
+    return -person.h
+
+func_tuple = (return_n, return_h)
+print_tuple = ('name', '\nheight')
+
+
+for i in range(2):
+    people.sort(key=func_tuple[i])
+    print(print_tuple[i])
+
+    for person in people:
+        print(f'{person.n} {person.h} {person.w}')
