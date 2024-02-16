@@ -7,11 +7,11 @@ for i in range(n):
     for j in range(1, n):
         if arr[i][j] == arr[i][j-1]:
             cnt_num += 1
-        elif cnt_num >= m:
+        elif cnt_num < m:
+            cnt_num = 1
+        else:
             happy_num_cnt += 1
             break
-        else:
-            cnt_num = 1
     else:
         if cnt_num >= m:
             happy_num_cnt += 1
@@ -22,11 +22,11 @@ for j in range(n):
     for i in range(1, n):
         if arr[i][j] == arr[i-1][j]:
             cnt_num += 1
-        elif cnt_num >= m:
+        elif cnt_num < m:
+            cnt_num = 1
+        else:
             happy_num_cnt += 1
             break
-        else:
-            cnt_num = 1
     else:
         if cnt_num >= m:
             happy_num_cnt += 1
