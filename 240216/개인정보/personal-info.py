@@ -9,13 +9,9 @@ people = [Person(*input().split()) for _ in range(5)]
 return_n = lambda person : person.n
 return_h = lambda person : -person.h
 
-func_tuple = (return_n, return_h)
-print_tuple = ('name', '\nheight')
-
-
-for i in range(2):
-    people.sort(key=func_tuple[i])
-    print(print_tuple[i])
+for func, word in (return_n, 'name'), (return_h, '\nheight'):
+    people.sort(key=func)
+    print(word)
 
     for person in people:
         print(f'{person.n} {person.h} {person.w}')
