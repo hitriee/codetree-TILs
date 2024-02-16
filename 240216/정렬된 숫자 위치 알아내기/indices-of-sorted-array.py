@@ -1,5 +1,5 @@
 N = int(input())
-numbers = list(enumerate(map(int, input().split()), start=0))
+numbers = list(enumerate(map(int, input().split())))
 numbers.sort(lambda number: (number[1], number[0]))
 order = [0] * N
 
