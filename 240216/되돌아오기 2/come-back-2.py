@@ -1,13 +1,15 @@
 commands = input()
+N = len(commands)
 dx, dy = [0, 1, 0, -1], [1, 0, -1, 0]
-x = y = idx = time = 0
-for command in commands:
-    time += 1
+x = idx = 0
+y = 1
+for i in range(1, N):
+    command = commands[i]
     if command == 'F':
         x += dx[idx]
         y += dy[idx]
         if y == x == 0:
-            print(time)
+            print(i+1)
             break
     elif command == 'R':
         idx = (idx + 1) % 4
