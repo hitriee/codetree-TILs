@@ -6,11 +6,8 @@ class Person:
 
 people = [Person(*input().split()) for _ in range(5)]
 
-def return_n(person):
-    return person.n
-
-def return_h(person):
-    return -person.h
+return_n = lambda person : person.n
+return_h = lambda person : -person.h
 
 func_tuple = (return_n, return_h)
 print_tuple = ('name', '\nheight')
