@@ -7,10 +7,17 @@ for i in range(2, n, 2):
     for j in range(-1, 1):
         last = i+j
         number = numbers[last]
-        sorted_numbers.append(number)
-        for k in range(last-1, -1, -1):
-            if sorted_numbers[k] > number:
-                sorted_numbers[k], sorted_numbers[k+1] = sorted_numbers[k+1], sorted_numbers[k]
+        start, end = 0, last-1
+        while start <= end:
+            mid = (start+end)//2
+            if sorted_numbers[mid] > number:
+                end = mid - 1
+            elif sorted_numbers[mid] < number:
+                start = mid + 1
             else:
+                sorted_numbers.insert(mid, number)
                 break
+        else:
+            sorted_numbers.insert(start, number)
+    
     print(sorted_numbers[i//2], end=' ')
