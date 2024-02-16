@@ -6,7 +6,7 @@ class Student:
 
 N = int(input())
 students = [Student(*input().split(), i) for i in range(1, N+1)]
-students.sort(key=lambda student: (-student.h, -student.w, student.n))
+students.sort(key=lambda student: (-student.h, -student.w))
 
 for student in students:
     print(student.h, student.w, student.n)
