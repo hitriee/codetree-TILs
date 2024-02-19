@@ -4,7 +4,7 @@ dx, dy = [0, 1, 0, -1], [1, 0, -1, 0]
 y = x = idx = 0
 
 for num in range(1, n*m+1):
-    rectangle[y][x] = num
+    rectangle[y][x] = str(num)
     ny, nx = y+dy[idx], x+dx[idx]
     if 0 <= ny < n and 0 <= nx < m and rectangle[ny][nx] == 0:
         y, x = ny, nx
@@ -13,4 +13,4 @@ for num in range(1, n*m+1):
         y, x = y+dy[idx], x+dx[idx]
 
 for i in range(n):
-    print(*rectangle[i])
+    print(' '.join(rectangle[i]))
