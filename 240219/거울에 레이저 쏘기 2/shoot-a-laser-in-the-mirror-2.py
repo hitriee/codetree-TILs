@@ -1,7 +1,7 @@
 N = int(input())
 info = [input() for _ in range(N)]
 K = int(input()) - 1
-direction = [(1, 0), (0, -1), (-1, 0), (0, 1)]
+dy, dx = [1, 0, -1, 0], [0, -1, 0, 1]
 idx, cnt = K//N, 0
 
 if idx == 0:
@@ -22,7 +22,7 @@ while 0 <= y < N and 0 <= x < N:
     else:
         idx += 1
     
-    y += direction[idx][0]
-    x += direction[idx][1]
+    y += dy[idx]
+    x += dx[idx]
 
 print(cnt)
