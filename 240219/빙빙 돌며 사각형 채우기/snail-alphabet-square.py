@@ -17,4 +17,4 @@ for _ in range(n*m):
     alp_i = (alp_i + 1) % 26
 
 for i in range(n):
-    print(*arr[i])
+    print(' '.join(arr[i]))
