@@ -33,7 +33,7 @@
 # 🥇 실전 훈련
 |총 문제 수|티어|유형|
 |---:|---|---|
-|5|![Silver3][s3] ~ ![Silver3][s3]|`Postfix` `Priority Queue` `Stack` `Queue` `Greedy`|
+|5|![Silver3][s3] ~ ![Silver3][s3]|`Priority Queue` `Stack` `Greedy` `Postfix` `Queue`|
 
 |기록분류|이름|티어|유형|상태|최근 제출 코드|
 |---|---|---|---|---|---|
