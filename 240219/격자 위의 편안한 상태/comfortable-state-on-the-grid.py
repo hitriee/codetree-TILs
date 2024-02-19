@@ -6,7 +6,5 @@ for _ in range(M):
     arr[r][c] = 1
     cnt = 0
     for i in range(4):
-        nr, nc = r+dr[i], c+dc[i]
-        if arr[nr][nc] == 1:
-            cnt += 1
+        cnt += arr[r+dr[i]][c+dc[i]]
     print(1 if cnt == 3 else 0)
