@@ -16,14 +16,12 @@ for i in range(n):
     for j in range(m):
         horizontal = check[i][j]
         if horizontal > 0:
-            vertical = 2
             if max_size < horizontal:
                 max_size = horizontal
             for ni in range(i+1, n):
                 horizontal = min(horizontal, check[ni][j])
-                size = vertical * horizontal
+                size = (ni - i + 1) * horizontal
                 if max_size < size:
                     max_size = size
-                vertical += 1
 
 print(max_size)
