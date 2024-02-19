@@ -6,7 +6,7 @@ def in_range(y, x):
     return 0 <= y < n and 0 <= x < n
 
 for i in range(1, n-1):
-    for j in range(n-1):
+    for j in range(n-2):
         d = 1
         while True:
             y, x = i+d, j+d
