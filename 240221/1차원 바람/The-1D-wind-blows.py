@@ -18,25 +18,17 @@ def move_each(r, d):
 def move(r, d):
     r = int(r) - 1
     move_each(r, d)
-    new_d = d
-    for i in range(r-1, -1, -1):
-        new_d = reversed_d[new_d]
-        for j in range(M):
-            if building[i+1][j] == building[i][j]:
-                move_each(i, new_d)
+
+    for start, end, step in (r-1, -1, -1), (r+1, N, 1):
+        new_d = d
+        for i in range(start, end, step):
+            new_d = reversed_d[new_d]
+            for j in range(M):
+                if building[i-step][j] == building[i][j]:
+                    move_each(i, new_d)
+                    break
+            else:
                 break
-        else:
-            break
-    
-    new_d = d
-    for i in range(r+1, N):
-        new_d = reversed_d[new_d]
-        for j in range(M):
-            if building[i-1][j] == building[i][j]:
-                move_each(i, new_d)
-                break
-        else:
-            break
 
 for _ in range(Q):
     move(*input().split())
