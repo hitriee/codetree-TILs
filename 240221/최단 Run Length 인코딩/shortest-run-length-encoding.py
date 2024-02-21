@@ -2,12 +2,12 @@ A = list(input())
 length = len(A)
 min_length = length * 2
 for _ in range(length):
-    before_alp, cnt, new_A = A[0], 0, ''
+    before_alp, cnt, new_A = A[0], 1, ''
     for i in range(1, length):
         if before_alp == A[i]:
             cnt += 1
         else:
-            new_A += before_alp * cnt
+            new_A += before_alp + str(cnt)
             before_alp, cnt = A[i], 1
     
     new_A += before_alp + str(cnt)
