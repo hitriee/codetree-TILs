@@ -1,14 +1,12 @@
 n, t = map(int, input().split())
-top_numbers = input().split()
-bottom_numbers = input().split()
+numbers = input().split()
+numbers += input().split()
 
 for _ in range(t):
-    last_top, last_bottom = top_numbers[-1], bottom_numbers[-1]
-    for i in range(n-1, 0, -1):
-        top_numbers[i] = top_numbers[i-1]
-        bottom_numbers[i] = bottom_numbers[i-1]
-    top_numbers[0] = last_bottom
-    bottom_numbers[0] = last_top
+    last_number = numbers[-1]
+    for i in range(2*n-1, 0, -1):
+        numbers[i] = numbers[i-1]
+    numbers[0] = last_number
 
-print(' '.join(top_numbers))
-print(' '.join(bottom_numbers))
+print(' '.join(numbers[:n]))
+print(' '.join(numbers[n:]))
