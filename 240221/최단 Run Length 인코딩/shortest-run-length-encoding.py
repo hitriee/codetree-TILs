@@ -7,7 +7,7 @@ else:
     before_alp, cnt = A[-1], 1
     for i in range(length-2, 0, -1):
         if before_alp != A[i]:
-            t = length - i
+            t = length - i - 1
             break
     else:
         t = 0
