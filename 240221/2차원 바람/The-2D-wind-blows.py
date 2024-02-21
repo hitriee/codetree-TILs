@@ -44,4 +44,4 @@ for _ in range(Q):
     change(*wind_info)
 
 for i in range(N):
-    print(*building[i])
+    print(' '.join(map(str, building[i])))
