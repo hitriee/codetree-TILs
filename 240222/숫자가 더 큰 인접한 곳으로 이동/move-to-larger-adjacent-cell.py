@@ -13,10 +13,10 @@ while True:
         nr, nc = r+dr[i], c+dc[i]
         if in_range(nr, nc) and now < arr[nr][nc]:
             r, c = nr, nc
-            numbers.append(now)
+            numbers.append(str(now))
             break
     else:
-        numbers.append(now)
+        numbers.append(str(now))
         break
 
-print(*numbers)
+print(' '.join(numbers))
