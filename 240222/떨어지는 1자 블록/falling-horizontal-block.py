@@ -1,6 +1,6 @@
 n, m, k = map(int, input().split())
 arr = [input().split() for _ in range(n)]
-block_i = n
+block_i = n-1
 
 for j in range(k-1, m+k-1):
     for i in range(1, n):
@@ -9,7 +9,6 @@ for j in range(k-1, m+k-1):
                 block_i = i-1
             break
     else:
-        block_i = n-1
         break
 
 for j in range(k-1, m+k-1):
