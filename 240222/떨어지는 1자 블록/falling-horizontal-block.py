@@ -8,6 +8,8 @@ for j in range(k-1, m+k-1):
             if block_i > i:
                 block_i = i
             break
+    else:
+        block_i = 0
 
 
 arr[block_i][k-1:m+k-1] = ['1'] * m
