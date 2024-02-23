@@ -10,9 +10,6 @@ def in_range(y, x):
 
 while True:
     ny, nx = y+dy[i], x+dx[i]
-    if y == initial_y and x == initial_x and i == 0:
-        time = - 1
-        break
     if not in_range(ny, nx):
         break
     if arr[ny][nx] == '#':
@@ -26,8 +23,8 @@ while True:
         if arr[ny][nx] != '#':
             y, x, i = ny, nx, ni
             time += 1
-        if initial_y == y and initial_x == x and i == 0:
-            time = -1
-            break
+    if initial_y == y and initial_x == x and i == 0:
+        time = -1
+        break
 
 print(time)
