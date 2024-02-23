@@ -1,6 +1,8 @@
 N, M = map(int, input().split())
 arr = [input() for _ in range(N)]
+k = 0
 while N:
+    k += 1
     bomb = False
     cnt = 1
     new_arr = []
@@ -12,7 +14,7 @@ while N:
                 bomb = True
                 N -= cnt
             else:
-                new_arr.extend(arr[i-1] * cnt)
+                new_arr.extend([arr[i-1]] * cnt)
             
             cnt = 1
 
@@ -20,7 +22,7 @@ while N:
         bomb = True
         N -= cnt
     else:
-        new_arr.extend(arr[-1] * cnt)
+        new_arr.extend([arr[-1]] * cnt)
 
     if not bomb:
         break
