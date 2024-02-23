@@ -1,8 +1,20 @@
+class NumberInArr:
+    def __init__(self, y, x, value):
+        self.y = y
+        self.x = x
+        self.value = int(value)
+
 n, m = map(int, input().split())
-arr = [list(map(int, input().split())) for _ in range(n)]
-dy, dx = [], []
+position, dy, dx = [NumberInArr(0, 0, 0)], [], []
+arr = []
 limit = n*n+1
-position = [() for _ in range(limit)]
+
+for i in range(n):
+    arr.append(list(map(int, input().split())))
+    for j in range(n):
+        position.append(NumberInArr(i, j, arr[-1][j]))
+
+position.sort(key=lambda number: number.value)
 
 for i in range(-1, 2):
     for j in range(-1, 2):
@@ -10,14 +22,9 @@ for i in range(-1, 2):
             dy.append(i)
             dx.append(j)
 
-for y in range(n):
-    for x in range(n):
-        position[arr[y][x]] = (y, x)
-
-
 for _ in range(m):
     for num in range(1, limit):
-        y, x = position[num]
+        y, x = position[num].y, position[num].x
         max_num = max_y = max_x = 0
         for i in range(8):
             ny, nx = y+dy[i], x+dx[i]
@@ -26,9 +33,9 @@ for _ in range(m):
                     max_num = arr[ny][nx]
                     max_y, max_x = ny, nx
 
+        position[num].y, position[num].x = max_y, max_x
+        position[max_num].y, position[max_num].x = y, x
         arr[max_y][max_x], arr[y][x] = num, max_num
-        position[num], position[max_num] = (max_y, max_x), (y, x)
-
 
 for i in range(n):
     print(*arr[i])
