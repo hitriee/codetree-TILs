@@ -20,7 +20,7 @@ while N:
         bomb = True
         N -= cnt
     else:
-        new_arr.extend(arr[i-1] * cnt)
+        new_arr.extend(arr[-1] * cnt)
 
     if not bomb:
         break
