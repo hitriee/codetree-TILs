@@ -5,8 +5,7 @@ class NumberInArr:
         self.value = value
 
 n, m = map(int, input().split())
-position = [NumberInArr(0, 0, 0)]
-arr, dy, dx = [], [], []
+position, arr, dy, dx = [NumberInArr(0, 0, 0)], [], [], []
 limit = n*n+1
 
 for i in range(n):
