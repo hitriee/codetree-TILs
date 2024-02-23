@@ -2,11 +2,11 @@ class NumberInArr:
     def __init__(self, y, x, value):
         self.y = y
         self.x = x
-        self.value = int(value)
+        self.value = value
 
 n, m = map(int, input().split())
-position, dy, dx = [NumberInArr(0, 0, 0)], [], []
-arr = []
+position = [NumberInArr(0, 0, 0)]
+arr, dy, dx = [], [], []
 limit = n*n+1
 
 for i in range(n):
