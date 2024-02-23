@@ -1,6 +1,6 @@
 N, M = map(int, input().split())
 arr = [input() for _ in range(N)]
-while True:
+while N:
     bomb = False
     cnt = 1
     new_arr = arr[:1]
