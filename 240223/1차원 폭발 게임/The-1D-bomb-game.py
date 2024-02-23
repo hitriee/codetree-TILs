@@ -3,7 +3,7 @@ arr = [input() for _ in range(N)]
 while N:
     bomb = False
     cnt = 1
-    new_arr = arr[:1]
+    new_arr = []
     for i in range(1, N):
         if arr[i] == arr[i-1]:
             cnt += 1
@@ -11,18 +11,16 @@ while N:
             if cnt >= M:
                 bomb = True
                 N -= cnt
-                for _ in range(cnt):
-                    new_arr.pop()
+            else:
+                new_arr.extend(arr[i-1] * cnt)
             
             cnt = 1
-        
-        new_arr.append(arr[i])
 
     if cnt >= M:
         bomb = True
         N -= cnt
-        for _ in range(cnt):
-            new_arr.pop()
+    else:
+        new_arr.extend(arr[i-1] * cnt)
 
     if not bomb:
         break
