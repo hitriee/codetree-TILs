@@ -20,16 +20,16 @@ for _ in range(t):
             nr, nc = r+dr[d], c+dc[d]
             if 0 <= nr < n and 0 <= nc < n:
                 r, c = nr, nc
-                before_i = new_arr[r][c]
-
-                if before_i != -1:
-                    w += position[before_i][-1]
-                    position[before_i] = ()
-                
-                position[i] = [nr, nc, d, w]
 
             else:
-                position[i][2] = 3-d
+                d = 3-d
+            
+            before_i = new_arr[r][c]
+            if before_i != -1:
+                w += position[before_i][-1]
+                position[before_i] = ()
+            
+            position[i] = [r, c, d, w]
             
             new_arr[r][c] = i
             
