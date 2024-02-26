@@ -9,11 +9,10 @@ def convert(x):
 
 for i in range(m):
     r, c, d, w = map(convert, input().split())
-    position.append((r-1, c-1, d, w))
+    position.append([r-1, c-1, d, w])
     arr[r-1][c-1] = [i]
 
 for _ in range(t):
-    new_position = []
     new_arr = [[-1] * n for _ in range(n)]
     for i in range(m):
         if position[i]:
@@ -24,27 +23,23 @@ for _ in range(t):
                 before_i = new_arr[r][c]
 
                 if before_i != -1:
-                    w += new_position[before_i][-1]
-                    new_position[before_i] = ()
+                    w += position[before_i][-1]
+                    position[before_i] = ()
+                
+                position[i] = [nr, nc, d, w]
 
             else:
-                d = 3-d
+                position[i][2] = 3-d
             
             new_arr[r][c] = i
-            new_position.append((r, c, d, w))
             
-        else:
-            new_position.append(())
 
-    position = new_position[:]
     arr = [new_arr[i][:] for i in range(n)]
 
-for i in range(n):
-    for j in range(n):
-        idx = arr[i][j]
-        if idx >= 0:
-            cnt += 1
-            if max_w < new_position[idx][-1]:
-                max_w = new_position[idx][-1]
+for i in range(m):
+    if position[i]:
+        cnt += 1
+        if max_w < position[i][-1]:
+            max_w = position[i][-1]
 
 print(cnt, max_w)
