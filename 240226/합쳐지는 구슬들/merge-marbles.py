@@ -7,12 +7,7 @@ cnt = max_w = 0
 def convert(x):
     return converted_d[x] if x.isalpha() else int(x)
 
-for i in range(m):
-    r, c, d, w = map(convert, input().split())
-    position.append([r-1, c-1, d, w])
-    arr[r-1][c-1] = [i]
-
-for _ in range(t):
+def move_balls():
     new_arr = [[-1] * n for _ in range(n)]
     for i in range(m):
         if position[i]:
@@ -30,11 +25,18 @@ for _ in range(t):
                 position[before_i] = ()
             
             position[i] = [r, c, d, w]
-            
             new_arr[r][c] = i
             
 
-    arr = [new_arr[i][:] for i in range(n)]
+    return new_arr
+
+for i in range(m):
+    r, c, d, w = map(convert, input().split())
+    position.append([r-1, c-1, d, w])
+    arr[r-1][c-1] = [i]
+
+for _ in range(t):
+    arr = move_balls()
 
 for i in range(m):
     if position[i]:
