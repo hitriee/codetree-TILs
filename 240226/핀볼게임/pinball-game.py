@@ -38,5 +38,7 @@ while True:
         i += 1
         y += dy[i]
         x += dx[i]
+        if not (0 <= ny < n and 0 <= nx < n):
+            break
     
 print(max_time)
