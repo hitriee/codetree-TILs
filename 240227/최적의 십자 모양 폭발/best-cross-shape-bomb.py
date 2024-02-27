@@ -33,15 +33,12 @@ def cnt_seq():
         for j in range(n-1):
             if new_arr[i][j] == new_arr[i][j+1]:
                 num_cnt += 1
-            else:
                 if num_cnt == 2:
-                    if new_arr[i][j-1] > 0:
+                    if new_arr[i][j] > 0:
                         cnt += 1
+                    num_cnt = 1
+            else:
                 num_cnt = 1
-
-        if num_cnt == 2:
-            if new_arr[i][-1] > 0:
-                cnt += 1
     
     num_cnt = 1
 
@@ -49,15 +46,12 @@ def cnt_seq():
         for i in range(n-1):
             if new_arr[i][j] == new_arr[i+1][j]:
                 num_cnt += 1
-            else:
                 if num_cnt == 2:
-                    if new_arr[i-1][j] > 0:
+                    if new_arr[i][j] > 0:
                         cnt += 1
+                    num_cnt = 1
+            else:
                 num_cnt = 1
-
-        if num_cnt == 2:
-            if new_arr[-1][j] > 0:
-                cnt += 1
     
     return cnt
 
