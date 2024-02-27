@@ -32,8 +32,6 @@ else:
             max_time = time
         
         ny, nx = y+dy[i], x+dx[i]
-        if ny == nx == 0:
-            break
         
         if 0 <= ny < n and 0 <= nx < n:
             y, x = ny, nx
