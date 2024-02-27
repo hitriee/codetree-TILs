@@ -12,17 +12,18 @@ def bomb(y, x, value):
     new_arr[y][x] = 0
     
 
-def gravity(y, x, value):
+def gravity():
     from collections import deque
+    
     for j in range(n):
         q = deque()
-        for i in range(n-1, 0, -1):
+        for i in range(n-1, -1, -1):
             if new_arr[i][j] == 0:
-                q.append(j)
+                q.append(i)
             elif q:
                 bottom_i = q.popleft()
                 new_arr[i][j], new_arr[bottom_i][j] = 0, new_arr[i][j]
-                q.append(j)
+                q.append(i)
 
 
 def cnt_seq():
@@ -39,7 +40,7 @@ def cnt_seq():
                 num_cnt = 1
 
         if num_cnt == 2:
-            if new_arr[-1][-1] > 0:
+            if new_arr[i][-1] > 0:
                 cnt += 1
     
     num_cnt = 1
@@ -55,7 +56,7 @@ def cnt_seq():
                 num_cnt = 1
 
         if num_cnt == 2:
-            if new_arr[-1][-1] > 0:
+            if new_arr[-1][j] > 0:
                 cnt += 1
     
     return cnt
@@ -66,7 +67,7 @@ for i in range(n):
         value = arr[i][j]
 
         bomb(i, j, value)
-        gravity(i, j, value)
+        gravity()
         cnt = cnt_seq()
 
         if max_cnt < cnt:
