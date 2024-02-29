@@ -25,7 +25,8 @@ def choose_coin(level, cnt, before, start):
 
     if level == 3:
         cnt += calc_distance(*before, *E)
-        min_cnt = cnt
+        if min_cnt > cnt:
+            min_cnt = cnt
         return
     
     for i in range(start, 10):
