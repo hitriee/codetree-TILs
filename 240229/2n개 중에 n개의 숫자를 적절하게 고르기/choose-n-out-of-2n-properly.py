@@ -2,8 +2,9 @@ n = int(input())
 numbers = tuple(map(int, input().split()))
 min_dif = n * 1000
 total = sum(numbers)
+twice = 2*n
 
-def split_numbers(level=0, result=0, start=0):
+def split_numbers(level, result, start):
     global min_dif
 
     if level == n:
@@ -12,9 +13,9 @@ def split_numbers(level=0, result=0, start=0):
             min_dif = dif
         return
     
-    for i in range(start, 2*n):
+    for i in range(start, twice):
         split_numbers(level+1, result+numbers[i], i+1)
 
-split_numbers()
+split_numbers(0, 0, 0)
 
 print(min_dif)
