@@ -45,7 +45,7 @@ for i in range(8):
                 for k in range(j+1, 10):
                     coin3 = coin_list[k]
                     if coin3:
-                        cnt3 = cnt2 + calc_distance(*coin2, *coin3)
+                        cnt3 = cnt2 + calc_distance(*coin2, *coin3) + calc_distance(*coin3, *E)
                         if min_cnt > cnt3:
                             min_cnt = cnt3
 
