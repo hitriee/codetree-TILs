@@ -11,9 +11,9 @@ def calc_nums(level=0, start=0, result=0):
         return
     
     for i in range(start, n):
-        calc_nums(level+1, i+1, result^i)
+        calc_nums(level+1, i+1, result^numbers[i])
 
 for i in range(n):
-    calc_nums(1, i+1, i)
+    calc_nums(1, i+1, numbers[i])
 
 print(max_result)
