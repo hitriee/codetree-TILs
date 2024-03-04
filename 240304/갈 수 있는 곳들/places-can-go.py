@@ -1,8 +1,11 @@
+from collections import deque
+
 n, k = map(int, input().split())
 arr = [input().split() for _ in range(n)]
 visited = [[False] * n for _ in range(n)]
 dy, dx = [1, 0, -1, 0], [0, 1, 0, -1]
 minus_one = lambda x: int(x) - 1
+q = deque()
 cnt = 0
 
 def can_go(y, x):
@@ -13,8 +16,6 @@ def can_go(y, x):
     return False
 
 def travel(*initial):
-    from collections import deque
-    q = deque()
     q.append(initial)
     each_cnt = 0
     while q:
