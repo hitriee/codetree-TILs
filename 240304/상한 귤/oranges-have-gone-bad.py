@@ -4,7 +4,7 @@ dy, dx = [1, 0, -1, 0], [0, 1, 0, -1]
 new_arr = [['-1'] * n for _ in range(n)]
 
 def can_spread(y, x, cnt):
-    if 0 <= y < n and 0 <= x < n and arr[y][x] == '1' and new_arr[y][x] == '-2':
+    if 0 <= y < n and 0 <= x < n and new_arr[y][x] == '-2':
         new_arr[y][x] = str(cnt)
         return True
     return False
