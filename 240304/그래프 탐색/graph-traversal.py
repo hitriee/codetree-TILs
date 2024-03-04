@@ -9,12 +9,12 @@ for _ in range(M):
 
 
 def check_destination(node):
-    for next in link_info[node]:
-        if not visited[next]:
-            visited[next] = True
-            check_destination(next)
+    if not visited[node]:
+        visited[node] = True
+        for next in link_info[node]:
+            if not visited[next]:
+                check_destination(next)
 
-visited[1] = True
 check_destination(1)
 
 print(visited.count(True) - 1)
