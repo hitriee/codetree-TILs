@@ -4,7 +4,7 @@ visited = [[False] * m for _ in range(n)]
 dy, dx = [1, 0, -1, 0], [0, 1, 0, -1]
 
 def can_go(y, x):
-    if 0 <= y < n and 0 <= x < n and arr[y][x] == '1' and not visited[y][x]:
+    if 0 <= y < n and 0 <= x < m and arr[y][x] == '1' and not visited[y][x]:
         visited[y][x] = True
         return True
     return False
