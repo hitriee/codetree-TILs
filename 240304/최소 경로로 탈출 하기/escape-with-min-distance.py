@@ -1,11 +1,10 @@
 n, m = map(int, input().split())
 arr = [input().split() for _ in range(n)]
-visited = [[False] * m for _ in range(n)]
 dy, dx = [1, 0, -1, 0], [0, 1, 0, -1]
 
 def can_move(y, x):
-    if 0 <= y < n and 0 <= x < m and arr[y][x] == '1' and not visited[y][x]:
-        visited[y][x] = True
+    if 0 <= y < n and 0 <= x < m and arr[y][x] == '1':
+        arr[y][x] = '0'
         return True
     return False
 
