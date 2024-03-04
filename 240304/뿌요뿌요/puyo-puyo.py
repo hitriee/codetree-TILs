@@ -23,8 +23,9 @@ def bomb(level, y, x, ref):
 for i in range(n):
     for j in range(n):
         if arr[i][j] != '0':
-            size = 0
-            bomb(0, i, j, arr[i][j])
+            size, value = 1, arr[i][j]
+            arr[i][j] = '0'
+            bomb(0, i, j, value)
             if size >= 4:
                 cnt += 1
             if max_size < size:
