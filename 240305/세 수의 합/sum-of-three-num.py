@@ -19,7 +19,7 @@ for i in range(m):
     if num1 == num2:
         cnt += ((val1-2)*(val1-1)*val1)//6
     elif num1 < num2 and check.get(num2):
-        cnt += check[num2]
+        cnt += ((val1-1)*val1)//2 * check[num2]
 
     for j in range(i+1, m):
         num2 = sorted_keys[j]
@@ -27,7 +27,7 @@ for i in range(m):
         num3 = k - (num1 + num2)
         if num3 == num2:
             cnt += val1 * (((val2-1)*val2)//2)
-        elif num3 > num2 and check.get(num3):
+        elif num2 < num3 and check.get(num3):
             cnt += val1 * val2 * check[num3]
         
 print(cnt)
