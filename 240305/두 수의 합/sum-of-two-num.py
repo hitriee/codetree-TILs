@@ -10,9 +10,8 @@ for number in numbers:
         check[number] = 1
 
 for number in numbers:
-    if number < half:
-        if check.get(k-number):
-            cnt += check[k-number]
+    if number < half and check.get(k-number):
+        cnt += check[k-number]
 
 if check.get(half):
     if k % 2 == 0:
