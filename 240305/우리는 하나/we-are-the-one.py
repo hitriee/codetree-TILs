@@ -5,8 +5,7 @@ cities = [list(map(int, input().split())) for _ in range(n)]
 dy, dx = [0, 1, 0, -1], [1, 0, -1, 0]
 results = [['']*n for _ in range(n)]
 q = deque()
-max_cnt = 0
-square = n*n
+max_cnt, square = 0, n*n
 
 def conf_results(result1, result2):
     new_result = ''
