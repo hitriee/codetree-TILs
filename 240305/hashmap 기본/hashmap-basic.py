@@ -2,10 +2,10 @@ n = int(input())
 hashmap = {}
 
 for _ in range(n):
-    command, *nums = input().split()
-    if command == 'add':
-        hashmap[nums[0]] = nums[1]
-    elif command == 'remove':
-        del hashmap[nums[0]]
+    command = input().split()
+    if command[0] == 'add':
+        hashmap[command[1]] = command[2]
+    elif command[0] == 'remove':
+        del hashmap[command[1]]
     else:
-        print(hashmap.get(nums[0]))
+        print(hashmap.get(command[1]))
