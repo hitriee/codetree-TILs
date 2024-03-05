@@ -1,10 +1,14 @@
 n, m = map(int, input().split())
-converted_values = {}
+alp_to_num = {}
+num_to_alp = ['']
 for i in range(1, n+1):
     alp = input()
-    str_num = str(i)
-    converted_values[alp] = str_num
-    converted_values[str_num] = alp
+    alp_to_num[alp] = i
+    num_to_alp.append(alp)
 
 for _ in range(m):
-    print(converted_values[input()])
+    key = input()
+    if key.isalpha():
+        print(alp_to_num[key])
+    else:
+        print(num_to_alp[int(key)])
