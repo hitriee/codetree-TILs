@@ -8,7 +8,7 @@ for i in range(1, n+1):
 
 for _ in range(m):
     key = input()
-    if key.isalpha():
-        print(alp_to_num[key])
-    else:
+    if key.isdigit():
         print(num_to_alp[int(key)])
+    else:
+        print(alp_to_num[key])
