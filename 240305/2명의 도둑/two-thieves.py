@@ -30,7 +30,7 @@ def steal_stuff(level, start, thief):
             max_total = total
         return
     
-    ref_quot, ref_remain = divmod(start, N)
+    ref_quot, ref_remain = divmod(start-1, N)
     
     for i in range(start, square):
         quot, remain = divmod(i, N)
