@@ -1,6 +1,5 @@
 n, h, m = map(int, input().split())
 arr = [input().split() for _ in range(n)]
-new_arr = [['0']*n for _ in range(n)]
 dy, dx = [-1, 0, 1, 0], [0, -1, 0, 1]
 
 def can_move(y, x):
@@ -31,7 +30,8 @@ def move_to_safe_area(i, j):
 
 
 for i in range(n):
+    new_arr = ['0'] * n
     for j in range(n):
         if arr[i][j] == '2':
-            new_arr[i][j] = move_to_safe_area(i, j)
-    print(' '.join(new_arr[i]))
+            new_arr[j] = move_to_safe_area(i, j)
+    print(' '.join(new_arr))
