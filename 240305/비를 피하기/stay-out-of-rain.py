@@ -30,8 +30,9 @@ def move_to_safe_area(i, j):
 
 
 for i in range(n):
-    new_arr = ['0'] * n
     for j in range(n):
         if arr[i][j] == '2':
-            new_arr[j] = move_to_safe_area(i, j)
-    print(' '.join(new_arr))
+            print(move_to_safe_area(i, j), end=' ')
+        else:
+            print('0', end=' ')
+    print()
