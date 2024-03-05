@@ -8,7 +8,6 @@ for number in numbers:
     else:
         frequency[number] = 1
 
-sorted_nums = sorted(frequency.items(), key=lambda x: (-x[1], -x[0]))
+sorted_nums = sorted(frequency.keys(), key=lambda key: (-frequency[key], -key))
 
-for i in range(k):
-    print(sorted_nums[i][0], end=' ')
+print(*sorted_nums[:k])
