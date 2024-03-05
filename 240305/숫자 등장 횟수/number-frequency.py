@@ -1,4 +1,4 @@
-n, m = map(int, input().split())
+_, m = map(int, input().split())
 arr = input().split()
 query_list = input().split()
 cnt_frequency = {}
