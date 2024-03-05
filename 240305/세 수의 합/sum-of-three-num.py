@@ -15,10 +15,11 @@ m = len(sorted_keys)
 for i in range(m):
     num1 = sorted_keys[i]
     val1 = check[num1]
-    if num1*3 == k:
+    num2 = k-num1*2
+    if num1 == num2:
         cnt += ((val1-2)*(val1-1)*val1)//6
-    elif check.get(k-num1*2):
-        cnt += check[k-num1*2]
+    elif num1 < num2 and check.get(num2):
+        cnt += check[num2]
 
     for j in range(i+1, m):
         num2 = sorted_keys[j]
