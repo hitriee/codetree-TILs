@@ -3,11 +3,12 @@ r1, c1, r2, c2 = map(lambda x: int(x)-1, input().split())
 visited = [[False] * n for _ in range(n)]
 dy, dx = [], []
 
-for i in (2, 1, -2, -1):
-    for _ in range(2):
-        dy.append(i)
-    dx.append(3-abs(i))
-    dx.append(abs(i)-3)
+for i in range(1, 3):
+    for j in (-1, 1):
+        for _ in range(2):
+            dy.append(i*j)
+        dx.append(3-abs(i))
+        dx.append(abs(i)-3)
 
 def can_move(y, x):
     if 0 <= y < n and 0 <= x < n and not visited[y][x]:
