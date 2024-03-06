@@ -8,8 +8,6 @@ for _ in range(n):
 
 for _ in range(m):
     val, x, y = heappop(dots)
-    x += 2
-    y += 2
-    heappush(dots, (val+4, x, y))
+    heappush(dots, (val+4, x+2, y+2))
 
 print(*dots[0][1:])
