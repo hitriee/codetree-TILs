@@ -1,2 +1,3 @@
 _ = int(input())
-print(len(set(input().split())))
+numbers = set(list(map(int, input().split())))
+print(len(numbers))
