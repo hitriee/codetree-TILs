@@ -22,14 +22,15 @@ class MaxHeap:
 n = int(input())
 maxheap = MaxHeap()
 for _ in range(n):
-    command = input().split()
-    if command[0] == 'push':
-        maxheap.push(int(command[1]))
-    elif command[0] == 'pop':
+    command = input()
+    if command[:4] == 'push':
+        num = int(command.split()[1])
+        maxheap.push(num)
+    elif command == 'pop':
         maxheap.pop()
-    elif command[0] == 'size':
+    elif command == 'size':
         maxheap.size()
-    elif command[0] == 'empty':
+    elif command == 'empty':
         maxheap.empty()
     else:
         maxheap.top()
