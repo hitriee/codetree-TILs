@@ -10,4 +10,7 @@ while len(numbers) >= 2:
     if number1 != number2:
         heappush(numbers, -abs(number1 - number2))
 
-print(-numbers[0] if len(numbers) == 1 else -1)
+if n == 1:
+    print(-numbers[0])
+else:
+    print(-1)
