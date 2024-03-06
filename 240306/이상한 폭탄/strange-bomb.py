@@ -11,9 +11,10 @@ def find_max_num():
     sorted_num = sorted(dynamite, reverse=True)
     
     for num in sorted_num:
-        length = len(dynamite[num])
+        values = dynamite[num]
+        length = len(values)
         for i in range(length-1):
-            if dynamite[num][i+1] - dynamite[num][i] <= K:
+            if values[i+1] - values[i] <= K:
                 return num
     
     return -1
