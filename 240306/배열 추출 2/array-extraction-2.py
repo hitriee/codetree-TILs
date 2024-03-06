@@ -8,7 +8,7 @@ for _ in range(n):
     if x:
         heappush(abs_heap, (abs(x), x))
     elif abs_heap:
-        min_num = heappop(abs_heap)[1]
+        _, min_num = heappop(abs_heap)
         print(min_num)
     else:
         print(0)
