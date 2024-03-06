@@ -1,11 +1,9 @@
 _ = int(input())
-a = set(input().split())
+a = set(list(map(int, input().split())))
 m = int(input())
-b = input().split()
-c = ['0'] * m
+b = list(map(int, input().split()))
 
 for i in range(m):
-    if b[i] in a:
-        c[i] = '1'
+    b[i] = '1' if b[i] in a else '0'
 
-print('\n'.join(c))
+print('\n'.join(b))
