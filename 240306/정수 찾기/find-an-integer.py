@@ -2,8 +2,10 @@ _ = int(input())
 a = set(input().split())
 m = int(input())
 b = input().split()
+c = ['0'] * m
 
 for i in range(m):
-    b[i] = '1' if b[i] in a else '0'
+    if b[i] in a:
+        c[i] = '1'
 
-print('\n'.join(b))
+print('\n'.join(c))
