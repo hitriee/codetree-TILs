@@ -13,7 +13,4 @@ while n >= 2:
     else:
         n -= 2
 
-if n == 1:
-    print(-numbers[0])
-else:
-    print(-1)
+print(-numbers[0] if n == 1 else -1)
