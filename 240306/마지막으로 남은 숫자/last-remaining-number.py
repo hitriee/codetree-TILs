@@ -10,10 +10,10 @@ while n >= 2:
     if number1 == number2:
         n -= 2
     else:
-        heappush(numbers, abs(number1 - number2))
+        heappush(numbers, -abs(number1 - number2))
         n -= 1
 
 if n == 1:
-    print(numbers[0])
+    print(-numbers[0])
 else:
     print(-1)
