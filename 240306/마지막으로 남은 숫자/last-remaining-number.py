@@ -7,11 +7,11 @@ heapify(numbers)
 while n >= 2:
     number1 = heappop(numbers)
     number2 = heappop(numbers)
-    if number1 == number2:
-        n -= 2
-    else:
+    if number1 != number2:
         heappush(numbers, -abs(number1 - number2))
         n -= 1
+    else:
+        n -= 2
 
 if n == 1:
     print(-numbers[0])
