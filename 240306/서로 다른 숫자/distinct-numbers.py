@@ -1,4 +1,2 @@
 _ = int(input())
-numbers = set(input().split())
-m = len(numbers)
-print(m)
+print(len(set(input().split())))
