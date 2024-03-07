@@ -1,25 +1,29 @@
-_, G = map(int, input().split())
+from collections import deque
+
+N, G = map(int, input().split())
 invited = {1}
 groups = []
-for _ in range(G):
-    group = tuple(map(int, input().split()))[1:]
+people = [[] for _ in range(N+1)]
+for i in range(G):
+    headcount, *group = tuple(map(int, input().split()))
     groups.append(set(group))
+    for j in group:
+        people[j].append(i)
 
 removed = [False] * G
+q = deque(invited)
 
-
-while True:
-    changed = False
-    for i in range(G):
+while q:
+    num = q.popleft()
+    for i in people[num]:
         if not removed[i]:
-            group = groups[i]
-            not_invited = set(group) - invited
-            if len(not_invited) <= 1:
-                invited.update(not_invited)
+            not_invited = groups[i] - invited
+            if len(not_invited) == 0:
                 removed[i] = True
-                changed = True
-        
-    if not changed:
-        break
+            elif len(not_invited) == 1:
+                invited.update(not_invited)
+                q.extend(not_invited)
+                removed[i] = True
+
 
 print(len(invited))
