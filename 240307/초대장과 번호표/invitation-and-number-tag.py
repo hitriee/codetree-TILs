@@ -2,8 +2,8 @@ _, G = map(int, input().split())
 invited = {1}
 groups = []
 for _ in range(G):
-    headcount, *group = map(int, input().split())
-    groups.append((headcount, set(group)))
+    _, *group = map(int, input().split())
+    groups.append(set(group))
 
 removed = [False] * G
 
@@ -12,7 +12,7 @@ while True:
     changed = False
     for i in range(G):
         if not removed[i]:
-            headcount, group = groups[i]
+            group = groups[i]
             not_invited = set(group) - invited
             if len(not_invited) <= 1:
                 invited.update(not_invited)
