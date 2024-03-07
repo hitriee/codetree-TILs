@@ -1,4 +1,4 @@
-A = input()
+A = input().rstrip('(')
 n = len(A)
 close_cnt = cnt = total_cnt = 0
 is_open = False
