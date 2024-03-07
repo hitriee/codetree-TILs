@@ -1,24 +1,24 @@
-from collections import deque
-
 _, G = map(int, input().split())
 invited = {1}
-groups = deque()
+groups = []
 for _ in range(G):
-    _, *group = map(int, input().split())
-    groups.append(tuple(group))
+    headcount, *group = map(int, input().split())
+    groups.append((headcount, set(group)))
+
+removed = [False] * G
+
 
 while True:
     changed = False
-    for _ in range(G):
-        group = groups.popleft()
-        not_invited = set(group) - invited
-        if len(not_invited) <= 1:
-            invited.update(not_invited)
-            changed = True
-            G -= 1
-        else:
-            groups.append(group)
-    
+    for i in range(G):
+        if not removed[i]:
+            headcount, group = groups[i]
+            not_invited = set(group) - invited
+            if len(not_invited) <= 1:
+                invited.update(not_invited)
+                removed[i] = True
+                changed = True
+        
     if not changed:
         break
 
