@@ -10,7 +10,7 @@ for i in range(N):
 
 tags = []
 max_delay = 0
-while people or tags:
+while people:
     if tags:
         i, start, duration = heappop(tags)
         delay = end - start
@@ -25,5 +25,13 @@ while people or tags:
     while people and people[0][0] < end:
         s, j, d = heappop(people)
         heappush(tags, (j, s, d))
+
+while tags:
+    i, start, duration = heappop(tags)
+    delay = end - start
+    if max_delay < delay:
+        max_delay = delay
+    end += duration
+
 
 print(max_delay)
