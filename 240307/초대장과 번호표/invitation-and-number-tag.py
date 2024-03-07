@@ -2,7 +2,7 @@ _, G = map(int, input().split())
 invited = {1}
 groups = []
 for _ in range(G):
-    _, *group = map(int, input().split())
+    group = tuple(map(int, input().split()))[1:]
     groups.append(set(group))
 
 removed = [False] * G
