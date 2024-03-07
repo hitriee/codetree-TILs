@@ -15,15 +15,15 @@ for _ in range(t):
             heappush(smaller, -number)
         if i%2 == 0:
             len_l, len_s = len(larger), len(smaller)
-            half = abs(len_l - len_s)//2
             if len_l > len_s:
-                for _ in range(half):
+                for _ in range((len_l - len_s)//2):
                     heappush(smaller, -mid_num)
                     mid_num = heappop(larger)
             elif len_l < len_s:
-                for _ in range(half):
+                for _ in range((len_s - len_l)//2):
                     heappush(larger, mid_num)
                     mid_num = -heappop(smaller)
+            
             result.append(mid_num)
     
     print(*result)
