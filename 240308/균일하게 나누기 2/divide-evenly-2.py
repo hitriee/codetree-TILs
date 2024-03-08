@@ -14,16 +14,13 @@ len_y = len(sorted_y)
 min_max_cnt, left_cnt = N, 0
 
 for x in sorted_x:
+    b_l_cnt = b_r_cnt = 0
     left_cnt += len(x_to_y[x])
+
     for y in x_to_y[x]:
-        if left_y_cnt.get(y):
-            left_y_cnt[y] += 1
-        else:
-            left_y_cnt[y] = 1
-        
+        left_y_cnt[y] = left_y_cnt.get(y, 0) + 1
         right_y_cnt[y] -= 1
 
-    b_l_cnt = b_r_cnt = 0
 
     for j in range(len_y-1):
         y = sorted_y[j]
