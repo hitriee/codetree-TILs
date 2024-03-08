@@ -22,7 +22,7 @@ min_max_cnt = N
 bottom_cnt = left_cnt = 0
 left_y_cnt = {}
 
-for i in range(len_x-1):
+for i in range(len_x):
     x = sorted_x[i]
     left_cnt += len(x_to_y[x])
     for y in x_to_y[x]:
