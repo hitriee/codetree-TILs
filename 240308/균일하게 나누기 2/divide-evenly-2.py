@@ -3,17 +3,11 @@ from sys import stdin
 new_input = stdin.readline
 N = int(new_input())
 x_to_y, right_y_cnt = {}, {}
+
 for _ in range(N):
     x, y = map(int, new_input().split())
-    if x_to_y.get(x):
-        x_to_y[x].append(y)
-    else:
-        x_to_y[x] = [y]
-
-    if right_y_cnt.get(y):
-        right_y_cnt[y] += 1
-    else:
-        right_y_cnt[y] = 1
+    x_to_y[x] = x_to_y.get(x, []) + [y]
+    right_y_cnt[y] = right_y_cnt.get(y, 0) + 1
 
 sorted_x = sorted(x_to_y)
 sorted_y = sorted(right_y_cnt)
