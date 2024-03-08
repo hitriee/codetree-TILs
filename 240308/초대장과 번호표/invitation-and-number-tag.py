@@ -7,9 +7,6 @@ for _ in range(G):
     _, *group = map(int, input().split())
     groups.append(set(group))
 
-removed = [False] * G
-
-
 while True:
     changed = False
     for _ in range(G):
