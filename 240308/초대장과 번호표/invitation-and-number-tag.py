@@ -5,13 +5,13 @@ invited = {1}
 groups = deque()
 for _ in range(G):
     _, *group = map(int, input().split())
-    groups.append(set(group))
+    groups.append(set(group)-invited)
 
 while True:
     changed = False
     for _ in range(G):
         group = groups.popleft()
-        not_invited = set(group) - invited
+        not_invited = group - invited
         if len(not_invited) <= 1:
             G -= 1
             invited.update(not_invited)
