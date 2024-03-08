@@ -17,14 +17,18 @@ def find_comb(level, start):
             for j in path:
                 a_result += a[i][j]
                 b_result += b[i][j]
+            
+            if a_result == b_result:
+                return
+            if a_result in b_comb or b_result in a_comb:
+                return
             a_comb.add(a_result)
             b_comb.add(b_result)
         
         for a_str in a_comb:
             if a_str in b_comb:
-                break
-        else:
-            cnt += 1
+                return
+        cnt += 1
         return
     
     for i in range(start, m):
