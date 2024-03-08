@@ -17,7 +17,7 @@ while True:
             invited.update(not_invited)
             changed = True
         else:
-            groups.append(group)
+            groups.append(not_invited)
         
     if not changed:
         break
