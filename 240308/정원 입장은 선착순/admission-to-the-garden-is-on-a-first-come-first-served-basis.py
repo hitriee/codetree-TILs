@@ -5,7 +5,8 @@ new_input = stdin.readline
 N = int(new_input())
 people = []
 for i in range(N):
-    heappush(people, (*map(int, new_input().split()), i))
+    start, duration = map(int, new_input().split())
+    heappush(people, (start, i, duration))
 
 tags = []
 max_delay = 0
@@ -17,12 +18,12 @@ while tags or people:
             max_delay = delay
         end += duration
     else:
-        start, duration, i = heappop(people)
+        start, i, duration = heappop(people)
         end = start + duration
 
     
     while people and people[0][0] < end:
-        s, d, j = heappop(people)
+        s, j, d = heappop(people)
         heappush(tags, (j, s, d))
 
 print(max_delay)
