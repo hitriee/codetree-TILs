@@ -2,22 +2,18 @@ from sys import stdin
 
 new_input = stdin.readline
 N = int(new_input())
-x_to_y, right_y_cnt = {}, {}
+x_to_y, right_y_cnt, left_y_cnt = {}, {}, {}
 
 for _ in range(N):
     x, y = map(int, new_input().split())
     x_to_y[x] = x_to_y.get(x, []) + [y]
     right_y_cnt[y] = right_y_cnt.get(y, 0) + 1
 
-sorted_x = sorted(x_to_y)
-sorted_y = sorted(right_y_cnt)
-len_x, len_y = len(sorted_x), len(sorted_y)
-min_max_cnt = N
-bottom_cnt = left_cnt = 0
-left_y_cnt = {}
+sorted_x, sorted_y = sorted(x_to_y), sorted(right_y_cnt)
+len_y = len(sorted_y)
+min_max_cnt, left_cnt = N, 0
 
-for i in range(len_x):
-    x = sorted_x[i]
+for x in sorted_x:
     left_cnt += len(x_to_y[x])
     for y in x_to_y[x]:
         if left_y_cnt.get(y):
