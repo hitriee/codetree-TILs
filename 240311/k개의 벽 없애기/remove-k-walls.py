@@ -12,7 +12,7 @@ def can_move(y, x):
 def remove_walls():
     from collections import deque
     q = deque()
-    visited = [[False] * n for _ in range(n)]
+    visited = [[k+1] * n for _ in range(n)]
     q.append((r1, c1, 0, 0))
     
     while q:
@@ -24,11 +24,13 @@ def remove_walls():
         time += 1
         for i in range(4):
             ny, nx = y+dy[i], x+dx[i]
-            if can_move(ny, nx) and not visited[ny][nx]:
-                visited[ny][nx] = True
+            if can_move(ny, nx):
                 if arr[ny][nx] == '0':
-                    q.append((ny, nx, cnt, time))
-                else:
+                    if visited[ny][nx] > cnt:
+                        visited[ny][nx] = cnt
+                        q.append((ny, nx, cnt, time))
+                elif visited[ny][nx] > cnt+1:
+                    visited[ny][nx] = cnt+1
                     q.append((ny, nx, cnt+1, time))
 
     return -1
