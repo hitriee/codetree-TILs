@@ -7,23 +7,21 @@ def return_four(num):
         new_nums.append(num+1)
     if num > 1:
         new_nums.append(num-1)
-    if num % 2 == 0:
-        new_nums.append(num//2)
-    if num % 3 == 0:
-        new_nums.append(num//3)
+    new_nums.append(num*2)
+    new_nums.append(num*3)
     
     return new_nums
 
 
-def make_one():
+def make_N():
     from collections import deque
     q = deque()
     visited = [False] * limit
-    q.append((N, 0))
+    q.append((1, 0))
 
     while q:
         num, cnt = q.popleft()
-        if num == 1:
+        if num == N:
             return cnt
         
         cnt += 1
@@ -33,4 +31,4 @@ def make_one():
                 visited[new_num] = True
                 q.append((new_num, cnt))
 
-print(make_one())
+print(make_N())
