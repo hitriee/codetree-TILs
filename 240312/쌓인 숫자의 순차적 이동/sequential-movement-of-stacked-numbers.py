@@ -35,7 +35,7 @@ for command in commands:
                 break
         total_nums[last_y][last_x].extendleft(temp[::-1])
         max_nums[last_y][last_x] = max(max_nums[last_y][last_x], *temp)
-        max_nums[y][x] = 0
+        max_nums[y][x] = max(total_nums[y][x]) if total_nums[y][x] else 0
 
 
 for i in range(n):
