@@ -1,12 +1,12 @@
 arr = [list(map(int, input().split())) for _ in range(4)]
 direction = input()
-if direction == 'U':
-    for j in range(4):
-        temp1, temp2 = [], []
-        for i in range(4):
-            if arr[i][j]:
-                temp1.append(arr[i][j])
-        
+for j in range(4):
+    temp1, temp2 = [], []
+    for i in range(4):
+        if arr[i][j]:
+            temp1.append(arr[i][j])
+    
+    if direction == 'U':
         for i in range(len(temp1)-1):
             if temp1[i]:
                 if temp1[i] == temp1[i+1]:
@@ -23,13 +23,7 @@ if direction == 'U':
         for i in range(len(temp2), 4):
             arr[i][j] = 0
 
-elif direction == 'D':
-    for j in range(4):
-        temp1, temp2 = [], []
-        for i in range(4):
-            if arr[i][j]:
-                temp1.append(arr[i][j])
-        
+    elif direction == 'D':
         for i in range(len(temp1)-1, 0, -1):
             if temp1[i]:
                 if temp1[i] == temp1[i-1]:
@@ -47,12 +41,7 @@ elif direction == 'D':
         for i in range(3-len(temp2)+1):
             arr[i][j] = 0
         
-elif direction == 'R':
-    for i in range(4):
-        temp1, temp2 = [], []
-        for j in range(4):
-            if arr[i][j]:
-                temp1.append(arr[i][j])
+    elif direction == 'R':
         
         for j in range(len(temp1)-1, 0, -1):
             if temp1[j]:
@@ -67,15 +56,7 @@ elif direction == 'R':
         
         arr[i] = [0] * (4 - len(temp2)) + temp2[::-1]
 
-                
-
-else:
-    for i in range(4):
-        temp1, temp2 = [], []
-        for j in range(4):
-            if arr[i][j]:
-                temp1.append(arr[i][j])
-        
+    else:
         for j in range(len(temp1)-1):
             if temp1[j]:
                 if temp1[j] == temp1[j+1]:
