@@ -1,29 +1,36 @@
 N = int(input())
+limit = int(1e6)+1
 
-def make_N():
+def return_four(num):
+    new_nums = []
+    if num < limit:
+        new_nums.append(num+1)
+    if num > 1:
+        new_nums.append(num-1)
+    if num % 2 == 0:
+        new_nums.append(num//2)
+    if num % 3 == 0:
+        new_nums.append(num//3)
+    
+    return new_nums
+
+
+def make_one():
     from collections import deque
     q = deque()
-    q.append((1, 0))
-    limit = int(1e6)
-    visited = set()
+    visited = [False] * limit
+    q.append((N, 0))
 
     while q:
         num, cnt = q.popleft()
-        if num == N:
+        if num == 1:
             return cnt
-        num_set = set()
-        if num < limit:
-            num_set.add(num+1)
-        if num > 1:
-            num_set.add(num-1)
-        
-        num_set.add(num*2)
-        num_set.add(num*3)
         
         cnt += 1
-        for new_num in num_set:
-            if new_num not in visited:
-                visited.add(new_num)
+        new_nums = return_four(num)
+        for new_num in new_nums:
+            if not visited[new_num]:
+                visited[new_num] = True
                 q.append((new_num, cnt))
 
-print(make_N())
+print(make_one())
