@@ -15,7 +15,7 @@ if direction == 'U':
                 else:
                     temp2.append(temp1[i])
         
-        if temp1[-1]:
+        if temp1 and temp1[-1]:
             temp2.append(temp1[-1])
 
         for i in range(len(temp2)):
@@ -38,7 +38,7 @@ elif direction == 'D':
                 else:
                     temp2.append(temp1[i])
         
-        if temp1[0]:
+        if temp1 and temp1[0]:
             temp2.append(temp1[0])
 
         for i in range(3, 3-len(temp2), -1):
@@ -62,7 +62,7 @@ elif direction == 'R':
                 else:
                     temp2.append(temp1[j])
         
-        if temp1[0]:
+        if temp1 and temp1[0]:
             temp2.append(temp1[0])
         
         arr[i] = [0] * (4 - len(temp2)) + temp2[::-1]
@@ -84,7 +84,7 @@ else:
                 else:
                     temp2.append(temp1[j])
         
-        if temp1[-1]:
+        if temp1 and temp1[-1]:
             temp2.append(temp1[-1])
         
         arr[i] = temp2 + [0] * (4 - len(temp2))
