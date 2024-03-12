@@ -3,7 +3,7 @@ limit = int(1e6)+1
 
 def return_four(num):
     new_nums = []
-    if num < limit:
+    if num < limit-1:
         new_nums.append(num+1)
     if num > 1:
         new_nums.append(num-1)
