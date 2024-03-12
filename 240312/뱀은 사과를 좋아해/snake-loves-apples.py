@@ -1,8 +1,5 @@
-from collections import deque
-
 N, M, K = map(int, input().split())
 arr = [[0] * N for _ in range(N)]
-snake_body = deque([(0, 0)])
 dy, dx = [-1, 0, 1, 0], [0, -1, 0, 1]
 direct_to_idx = {'U': 0, 'L': 1, 'D': 2, 'R': 3}
 convert = lambda x: int(x) if x.isdigit() else direct_to_idx[x]
@@ -13,7 +10,11 @@ for _ in range(M):
     arr[y][x] = 1
 
 def calc_time():
+    from collections import deque
+    
+    snake_body = deque([(0, 0)])
     time = 0
+
     for j in range(K):
         idx, num = map(convert, input().split())
         for _ in range(num):
