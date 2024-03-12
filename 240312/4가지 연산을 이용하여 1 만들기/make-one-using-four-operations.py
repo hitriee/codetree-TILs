@@ -5,6 +5,7 @@ def make_N():
     q = deque()
     q.append((1, 0))
     limit = int(1e6)
+    visited = set()
 
     while q:
         num, cnt = q.popleft()
@@ -15,11 +16,14 @@ def make_N():
             num_set.add(num+1)
         if num > 1:
             num_set.add(num-1)
+        
         num_set.add(num*2)
         num_set.add(num*3)
         
         cnt += 1
         for new_num in num_set:
-            q.append((new_num, cnt))
+            if new_num not in visited:
+                visited.add(new_num)
+                q.append((new_num, cnt))
 
 print(make_N())
