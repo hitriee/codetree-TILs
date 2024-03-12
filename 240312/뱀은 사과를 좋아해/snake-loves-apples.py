@@ -4,15 +4,15 @@ dy, dx = [-1, 0, 1, 0], [0, -1, 0, 1]
 direct_to_idx = {'U': 0, 'L': 1, 'D': 2, 'R': 3}
 convert = lambda x: int(x) if x.isdigit() else direct_to_idx[x]
 
-arr[0][0] = -1
 for _ in range(M):
     y, x = map(lambda x: int(x)-1, input().split())
     arr[y][x] = 1
 
 def calc_time():
     from collections import deque
-    
+
     snake_body = deque([(0, 0)])
+    arr[0][0] = -1
     time = 0
 
     for j in range(K):
