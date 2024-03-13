@@ -43,7 +43,7 @@ def find_max(i, j):
 
 
 for i1 in range(N):
-    for j1 in range(N-M):
+    for j1 in range(N-M+1):
         total = find_max(i1, j1)
         for j2 in range(j1+M, N-M+1):
             new_total = total + find_max(i1, j2)
