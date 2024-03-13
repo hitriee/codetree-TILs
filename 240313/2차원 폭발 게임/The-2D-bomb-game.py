@@ -44,12 +44,23 @@ def rotate():
 
 
 for _ in range(K):
-    cnt = bomb(cnt)
-    gravity()
+    while True:
+        new_cnt = bomb(cnt)
+        gravity()
+        # print(_, arr)
+        # print(_, new_cnt, cnt)
+        if new_cnt == cnt:
+            break
+        cnt = new_cnt
     arr = rotate()
     gravity()
 
-cnt = bomb(cnt)
-gravity()
+while True:
+    new_cnt = bomb(cnt)
+    gravity()
+    if new_cnt == cnt:
+        break
+    cnt = new_cnt
+
 
 print(cnt)
