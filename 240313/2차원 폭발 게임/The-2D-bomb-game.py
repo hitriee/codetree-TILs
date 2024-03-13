@@ -1,12 +1,12 @@
 N, M, K = map(int, input().split())
 arr = [input().split() for _ in range(N)]
-# start_i = [0] * N
+start_i = [0] * N
 cnt = N*N
 
 def bomb(cnt):
     for j in range(N):
         num, cnt_acc = '0', 0
-        for i in range(N):
+        for i in range(start_i[j], N):
             if arr[i][j] == num:
                 cnt_acc += 1
             else:
@@ -31,7 +31,7 @@ def gravity():
                 temp.append(arr[i][j])
         for i in range(N-1, N-1-len(temp), -1):
             arr[i][j] = temp[N-1-i]
-        # start_i[j] = i
+        start_i[j] = i
         for i in range(N-1-len(temp), -1, -1):
             arr[i][j] = '0'
 
@@ -47,8 +47,6 @@ for _ in range(K):
     while True:
         new_cnt = bomb(cnt)
         gravity()
-        # print(_, arr)
-        # print(_, new_cnt, cnt)
         if new_cnt == cnt:
             break
         cnt = new_cnt
