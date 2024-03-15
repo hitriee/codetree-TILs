@@ -5,5 +5,5 @@ for i in range(n):
     total += numbers[i]
     if total > 200:
         print(total)
-        print(f'{total//(i+1) :.1f}')
+        print(f'{total/(i+1) :.1f}')
         break
