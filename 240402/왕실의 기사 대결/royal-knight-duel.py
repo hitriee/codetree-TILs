@@ -84,8 +84,24 @@ def move(num, d):
         if new_idx != -1 and not visited[new_idx]:
             damage += append_data(new_idx)
 
+    for i in range(N):
+        if not visited[i]:
+            r, c, h, w, _ = knights[i]
+            for y in range(r, r+h):
+                for x in range(c, c+w):
+                    new_position[y][x] = position[y][x]
+        else:
+            for y in range(L):
+                for x in range(L):
+                    if new_position[y][x] == i:
+                        knights[i][:2] = [y, x]
+                        break
+
+
     for i in range(L):
         position[i] = new_position[i][:]
+    
+
 
     return damage
 
