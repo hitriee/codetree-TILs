@@ -28,12 +28,6 @@ def cnt_case(level, y, x, i):
                 cnt_case(level+1, dot_y, dot_x, new_i)
                 visited[j] = False
 
-for j in range(N):
-    y, x = dots[j]
-    new_i = find_new_i(0, 0, y, x)
-    if new_i >= 0:
-        visited[j] = True
-        cnt_case(1, y, x, new_i)
-        visited[j] = False
+cnt_case(0, 0, 0, -1)
 
 print(cnt)
