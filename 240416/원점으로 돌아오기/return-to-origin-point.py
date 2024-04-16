@@ -2,34 +2,42 @@ N = int(input())
 cnt = 0
 dots = [tuple(map(int, input().split())) for _ in range(N)]
 visited = [False] * N
-dy, dx = [0, 0, -1, 1], [-1, 1, 0, 0]
+path = []
+
+def find_new_i(y, x, dot_y, dot_x):
+    if dot_y == y:
+        return 0 if dot_x > x else 1
+    elif dot_x == x:
+        return 2 if dot_y > y else 3
+    return -1
 
 def cnt_case(level, y, x, i):
     global cnt
     if level == N:
-        if y == 0 or x == 0:
+        new_i = find_new_i(y, x, 0, 0)
+        if new_i >= 0 and new_i != i:
             cnt += 1
         return
     
     for j in range(N):
         if not visited[j]:
             dot_y, dot_x = dots[j]
-            visited[j] = True
-            if dot_y == y:
-                if dot_x > x:
-                    if i != 0:
-                        cnt_case(level+1, y, dot_x, 0)
-                elif i != 1:
-                    cnt_case(level+1, y, dot_x, 1)
-            elif dot_x == x:
-                if dot_y > y:
-                    if i != 2:
-                        cnt_case(level+1, dot_y, x, 2)
-                elif i != 4:
-                    cnt_case(level+1, dot_y, x, 4)
-            
-            visited[j] = False
+            new_i = find_new_i(y, x, dot_y, dot_x)
 
+            if new_i >= 0 and new_i != i:
+                visited[j] = True
+                path.append(j)
+                cnt_case(level+1, dot_y, dot_x, new_i)
+                path.pop()
+                visited[j] = False
 
-cnt_case(0, 0, 0, -1)
+for j in range(N):
+    y, x = dots[j]
+    new_i = find_new_i(0, 0, y, x)
+    if new_i >= 0:
+        visited[j] = True
+        path.append(j)
+        cnt_case(1, y, x, new_i)
+        path.pop()
+        visited[j] = False
 print(cnt)
