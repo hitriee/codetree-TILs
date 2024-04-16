@@ -2,7 +2,6 @@ N = int(input())
 cnt = 0
 dots = [tuple(map(int, input().split())) for _ in range(N)]
 visited = [False] * N
-path = []
 
 def find_new_i(y, x, dot_y, dot_x):
     if dot_y == y:
@@ -26,9 +25,7 @@ def cnt_case(level, y, x, i):
 
             if new_i >= 0 and new_i != i:
                 visited[j] = True
-                path.append(j)
                 cnt_case(level+1, dot_y, dot_x, new_i)
-                path.pop()
                 visited[j] = False
 
 for j in range(N):
@@ -36,8 +33,7 @@ for j in range(N):
     new_i = find_new_i(0, 0, y, x)
     if new_i >= 0:
         visited[j] = True
-        path.append(j)
         cnt_case(1, y, x, new_i)
-        path.pop()
         visited[j] = False
+
 print(cnt)
