@@ -11,12 +11,12 @@ def back_tracking(num, length, dict_len):
         return
     if length >= min_len:
         int_num = int(num)
-        if int_num < X:
-            return
         if int_num > Y:
             return
-        if dict_len == 2:
-            cnt += 1
+        if int_num >= X:
+            first_cnt = num_dict[first]
+            if first_cnt == 1 or first_cnt == length-1:
+                cnt += 1
 
     for i in range(10):
         if num_dict[i]:
@@ -30,6 +30,7 @@ def back_tracking(num, length, dict_len):
 
 
 for i in range(1, 10):
+    first = i
     num_dict[i] += 1
     back_tracking(str(i), 1, 1)
     num_dict[i] -= 1
