@@ -8,7 +8,7 @@ for i in range(n):
         max_income[i+t] = max(max_income[i] + p, max_income[i+t])
 
 
-print(max(max_income))
+print(max(max_income[-2:]))
 
 
 
