@@ -4,13 +4,13 @@ min_dif = 1000
 half = n // 2
 now = 0
 path = []
-visited = [False] * (1<<20)
+visited = set()
 
 def backtracking(level, start, score1):
     global min_dif, now
 
     if level == half:
-        if visited[now]:
+        if now in visited:
             return
         
         new_path = []
@@ -24,7 +24,9 @@ def backtracking(level, start, score1):
                 new_path.append(i)
                 
         
-        visited[now] = visited[remain] = True
+        visited.add(now)
+        visited.add(remain)
+
         dif = abs(score1 - score2)
         if dif < min_dif:
             min_dif = dif
