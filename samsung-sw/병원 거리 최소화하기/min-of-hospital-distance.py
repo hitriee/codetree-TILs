@@ -21,11 +21,9 @@ for i in range(l1):
     for j in range(l2):
         distance_arr[i][j] = calc_dist(*position, *people[j])
 
-distance_info = [min_distance] * l2
 
-
-def backtracking(level, start):
-    global min_distance, distance_info
+def backtracking(level, distance_info, start):
+    global min_distance
     
     if level == m:
         distance = sum(distance_info)
@@ -34,18 +32,12 @@ def backtracking(level, start):
         return
     
     
-    
-    temp = list(distance_info)
     for i in range(start, l1):
-        for j in range(l2):
-            new_distance = distance_arr[i][j]
-            if distance_info[j] > new_distance:
-                distance_info[j] = new_distance
+        new_distance_info = [min(distance_arr[i][j], distance_info[j]) for j in range(l2)]
         
-        backtracking(level+1, i+1)
-        distance_info = list(temp)
+        backtracking(level+1, new_distance_info, i+1)
 
 
-backtracking(0, 0)
+backtracking(0, [min_distance] * l2, 0)
 
 print(min_distance)
