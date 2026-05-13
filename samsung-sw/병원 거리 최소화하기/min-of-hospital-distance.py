@@ -19,20 +19,17 @@ distance_arr = [[min_distance] * l2 for _ in range(l1)]
 for i in range(l1):
     position = hospital[i]
     for j in range(l2):
-        new_distance = calc_dist(*position, *people[j])
-        if distance_arr[i][j] > new_distance:
-            distance_arr[i][j] = new_distance
+        distance_arr[i][j] = calc_dist(*position, *people[j])
 
 distance_info = [min_distance] * l2
 
 
 def backtracking(level, distance, start):
-    global min_distance
+    global min_distance, distance_info
     
     if level == m:
         if distance < min_distance:
             min_distance = distance
-        # print(path, min_distance, distance_info)
         return
     
     
@@ -45,8 +42,7 @@ def backtracking(level, distance, start):
                 distance_info[j] = new_distance
         
         backtracking(level+1, sum(distance_info), i+1)
-        for j in range(l2):
-            distance_info[j] = temp[j]
+        distance_info = list(temp)
 
 
 backtracking(0, 0, 0)
