@@ -24,10 +24,11 @@ for i in range(l1):
 distance_info = [min_distance] * l2
 
 
-def backtracking(level, distance, start):
+def backtracking(level, start):
     global min_distance, distance_info
     
     if level == m:
+        distance = sum(distance_info)
         if distance < min_distance:
             min_distance = distance
         return
@@ -41,10 +42,10 @@ def backtracking(level, distance, start):
             if distance_info[j] > new_distance:
                 distance_info[j] = new_distance
         
-        backtracking(level+1, sum(distance_info), i+1)
+        backtracking(level+1, i+1)
         distance_info = list(temp)
 
 
-backtracking(0, 0, 0)
+backtracking(0, 0)
 
 print(min_distance)
