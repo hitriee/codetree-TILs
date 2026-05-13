@@ -24,11 +24,10 @@ for i in range(l1):
             distance_arr[i][j] = new_distance
 
 distance_info = [min_distance] * l2
-path = []
 
 
 def backtracking(level, distance, start):
-    global min_distance, distance_info
+    global min_distance
     
     if level == m:
         if distance < min_distance:
@@ -46,7 +45,8 @@ def backtracking(level, distance, start):
                 distance_info[j] = new_distance
         
         backtracking(level+1, sum(distance_info), i+1)
-        distance_info = list(temp)
+        for j in range(l2):
+            distance_info[j] = temp[j]
 
 
 backtracking(0, 0, 0)
