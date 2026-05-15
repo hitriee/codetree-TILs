@@ -6,8 +6,8 @@ visited = [False] * M
 
 while True:
     cnt += 1
-    stability = stability[-1:] + stability[:-1]
-    visited = visited[-1:] + visited[:-1]
+    stability.insert(0, stability.pop())
+    visited.insert(0, visited.pop())
     
     if visited[N-1]:
         visited[N-1] = False
