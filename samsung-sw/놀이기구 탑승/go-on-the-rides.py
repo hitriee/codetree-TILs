@@ -8,7 +8,7 @@ dy, dx = (-1, 0, 0, 1), (0, -1, 1, 0)
 def find_position(n, *favorite):
     favorite = set(favorite)
     # 우선 순위 높은 칸 탑승
-    max_cnt = max_empty = 0
+    max_cnt = max_empty = -1
     y = x = N
     for i in range(N):
         for j in range(N):
@@ -27,15 +27,11 @@ def find_position(n, *favorite):
                     max_cnt, max_empty, y, x = cnt, empty, i, j
                 elif cnt == max_cnt:
                     # 2. 1번 조건 여러 곳이면 인접 칸 중 비어있는 칸의 수가 가장 많은 위치로
-                    if empty > max_empty:
-                        max_empty, y, x = empty, i, j
-                    elif empty == max_empty:
-                    # 3. 2번 조건 여러 곳이면 행 작은 위치
-                        if y > i:
-                            max_empty, y, x = empty, i, j
+                    if empty >= max_empty:
+                        # 3. 2번 조건 여러 곳이면 행 작은 위치
                         # 4. 3번 조건 여러 곳이면 열 작은 위치
-                        elif y == i and x > j:
-                            max_empty, x = empty, j
+                        max_empty, y, x = empty, i, j
+                        
 
     arr[y][x] = n
     students.append((n, favorite))
