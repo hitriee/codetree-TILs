@@ -1,10 +1,3 @@
-N = int(input())
-
-# 놀이기구
-arr = [[0] * N for _ in range(N)]
-students = []
-dy, dx = (-1, 0, 0, 1), (0, -1, 1, 0)
-
 def find_position(n, *favorite):
     favorite = set(favorite)
     # 우선 순위 높은 칸 탑승
@@ -52,6 +45,17 @@ def calc_total():
                         cnt += 1
             total += score[cnt]
     return total
+
+
+
+
+# ----
+N = int(input())
+
+# 놀이기구
+arr = [[0] * N for _ in range(N)]
+students = []
+dy, dx = (-1, 0, 0, 1), (0, -1, 1, 0)
 
 for _ in range(N*N):
     # 탑승 번호, 좋아하는 학생 번호
