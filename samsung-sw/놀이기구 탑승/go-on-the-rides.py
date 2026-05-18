@@ -1,5 +1,4 @@
-def find_position(n, *favorite):
-    favorite = set(favorite)
+def find_position(n, favorite):
     # 우선 순위 높은 칸 탑승
     max_cnt = max_empty = -1
     y = x = N
@@ -26,8 +25,7 @@ def find_position(n, *favorite):
                         max_empty, y, x = empty, i, j
                         
 
-    arr[y][x] = n
-    students.append((n, favorite))
+    return y, x
 
 # 모든 학생들이 놀이기구에 탑승한 이후의 최종 점수
 def calc_total():
@@ -36,8 +34,7 @@ def calc_total():
 
     for y in range(N):
         for x in range(N):
-            num = arr[y][x]
-            cnt = 0
+            num, cnt = arr[y][x], 0
             for i in range(4):
                 ny, nx = y + dy[i], x + dx[i]
                 if 0 <= ny < N and 0 <= nx < N:
@@ -58,8 +55,13 @@ students = []
 dy, dx = (-1, 0, 0, 1), (0, -1, 1, 0)
 
 for _ in range(N*N):
+    n, *favorite = map(int, input().split())
+    students.append((n, set(favorite)))
+
+for i in range(N*N):
     # 탑승 번호, 좋아하는 학생 번호
-    find_position(*map(int, input().split()))
+    y, x = find_position(*students[i])
+    arr[y][x] = students[i][0]
 
 students.sort()
 
