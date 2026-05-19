@@ -27,10 +27,11 @@ def grow():
                 cnt += 1
         area[y][x] += cnt
         visited[y][x] = True
+    
+    position.clear()
 
 
 def create():
-    position.clear()
     for y in range(N):
         for x in range(N):
             if visited[y][x]:
