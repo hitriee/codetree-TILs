@@ -4,7 +4,8 @@ def minus_one(num):
 def roll_dice():
     ny, nx = y+dy[d], x+dx[d]
     if 0 <= ny < N and 0 <= nx < M:
-        dice[d], dice[1^d], dice[4], dice[5] = dice[5], dice[4], dice[d], dice[1^d]
+        reverse_d = 1^d
+        dice[d], dice[reverse_d], dice[4], dice[5] = dice[5], dice[4], dice[d], dice[reverse_d]
         next_val = map_info[ny][nx]
         if next_val == 0:
             map_info[ny][nx] = dice[5]
