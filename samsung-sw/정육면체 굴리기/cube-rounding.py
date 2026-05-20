@@ -5,12 +5,12 @@ def roll_dice():
     ny, nx = y+dy[d], x+dx[d]
     if 0 <= ny < N and 0 <= nx < M:
         reverse_d = 1^d
-        dice[d], dice[reverse_d], dice[4], dice[5] = dice[5], dice[4], dice[d], dice[reverse_d]
+        dice[d], dice[reverse_d], dice[-2], dice[-1] = dice[-1], dice[-2], dice[d], dice[reverse_d]
         next_val = map_info[ny][nx]
         if next_val == 0:
-            map_info[ny][nx] = dice[5]
+            map_info[ny][nx] = dice[-1]
         else:
-            dice[5], map_info[ny][nx] = next_val, 0
+            dice[-1], map_info[ny][nx] = next_val, 0
         
         return (ny, nx)
 
