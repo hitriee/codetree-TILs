@@ -1,5 +1,4 @@
 from sys import stdin
-from collections import deque
 
 
 def int_input():
@@ -9,24 +8,34 @@ def int_input():
 N, M = int_input()
 arr = [list(int_input()) for _ in range(N)]
 dy, dx = (-1, 1, 0, 0), (0, 0, -1, 1)
-q = deque()
 max_total = 0
+visited = set()
+
+def dfs(level, total):
+    global max_total
+
+    if level == 4:
+        if max_total < total:
+            max_total = total
+        return
+    
+    new_level = level + 1
+    temp = set(visited)
+    for y, x in temp:
+        for k in range(4):
+            ny, nx = y + dy[k], x + dx[k]
+            if 0 <= ny < N and 0 <= nx < M:
+                if (ny, nx) not in visited:
+                    visited.add((ny, nx))
+                    dfs(new_level, total + arr[ny][nx])
+                    visited.remove((ny, nx))
+                
 
 for i in range(N):
     for j in range(M):
-        q.append((1, arr[i][j], {(i, j)}))
-        while q:
-            cnt, total, visited = q.popleft()
-            if cnt == 4:
-                if max_total < total:
-                    max_total = total
-            else:
-                new_cnt = cnt + 1
-                for y, x in visited:
-                    for k in range(4):
-                        ny, nx = y + dy[k], x + dx[k]
-                        if 0 <= ny < N and 0 <= nx < M:
-                            if (ny, nx) not in visited:
-                                q.append((new_cnt, total + arr[ny][nx], visited | {(ny, nx)}))
+        visited.add((i, j))
+        dfs(1, arr[i][j])
+        visited.remove((i, j))
+
 
 print(max_total)
