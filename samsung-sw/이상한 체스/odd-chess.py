@@ -3,16 +3,15 @@ def main():
     arr = [list(map(int, input().split())) for _ in range(N)]
     dy, dx = (-1, 0, 1, 0), (0, 1, 0, -1)
     visited = [[0] * M for _ in range(N)]
-    one, another = [], []
+    one = []
 
     for i in range(N):
         for j in range(M):
             val = arr[i][j]
             if val == 6:
-                visited[i][j] += 1
-                another.append((i, j, val))
-            elif val > 0:
-                visited[i][j] += 1
+                visited[i][j] = 1
+            if 0 < val < 6:
+                visited[i][j] = 1
                 one.append((i, j, val))
 
     K, max_cnt = len(one), 0
@@ -40,9 +39,6 @@ def main():
                         cnt += 1
 
             if max_cnt < cnt:
-                # for i in range(N):
-                #     print(visited[i])
-                # print()
                 max_cnt = cnt
             return
 
