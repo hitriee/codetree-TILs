@@ -2,7 +2,7 @@ from collections import deque
 
 N, M = map(int, input().split())
 area = [input().split() for _ in range(N)]
-empty, fire, walls = [], [], []
+empty, fire = [], []
 
 for i in range(N):
     for j in range(M):
@@ -11,10 +11,8 @@ for i in range(N):
             fire.append((i, j))
         elif val == '0':
             empty.append((i, j))
-        else:
-            walls.append((i, j))
 
-L, K = len(empty), len(fire)
+L = len(empty)
 q = deque()
 max_cnt = 0
 dy, dx = (-1, 1, 0, 0), (0, 0, -1, 1)
@@ -22,7 +20,7 @@ dy, dx = (-1, 1, 0, 0), (0, 0, -1, 1)
 
 def choose(level, start):
     if level == 3:
-        cnt = spread()
+        spread()
         return
     
     for i in range(start, L):
@@ -37,7 +35,7 @@ def spread():
 
     new_area = [area[i][:] for i in range(N)]
     q.extend(fire)
-    cnt = len(empty) - 3
+    cnt = L - 3
 
     while True:
         need_break = True
