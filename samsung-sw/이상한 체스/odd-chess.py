@@ -3,7 +3,7 @@ def main():
     arr = [list(map(int, input().split())) for _ in range(N)]
     dy, dx = (-1, 0, 1, 0), (0, 1, 0, -1)
     visited = [[0] * M for _ in range(N)]
-    one = []
+    one, directions = [], [set() for _ in range(6)]
 
     for i in range(N):
         for j in range(M):
@@ -16,17 +16,13 @@ def main():
 
     K, max_cnt = len(one), 0
 
-    def find_direction(idx):
-        if idx == 1:
-            return lambda x: (x,)
-        elif idx == 2:
-            return lambda x: (x, (x + 2) % 4)
-        elif idx == 3:
-            return lambda x: (x, (x + 1) % 4)
-        elif idx == 4:
-            return lambda x: (x, (x + 1) % 4, (x - 1) % 4)
-
-        return lambda x: tuple(range(0, 4))
+    for i in range(4):
+        directions[1].add((i,))
+        directions[2].add((i, (i+2)%4))
+        directions[3].add((i,(i+1)%4))
+        directions[4].add((i, (i+1)%4, (i-1)%4))
+    
+    directions[-1].add(tuple(range(0, 4)))
 
     def dfs(level):
         nonlocal max_cnt
@@ -43,12 +39,9 @@ def main():
             return
 
         y, x, val = one[level]
+        direction = directions[val]
 
-        directions = set()
-        for i in range(4):
-            directions.add(find_direction(val)(i))
-
-        for each in directions:
+        for each in direction:
             path = []
             for d in each:
                 ny, nx = y + dy[d], x + dx[d]
