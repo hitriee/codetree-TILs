@@ -14,8 +14,10 @@ def backtracking(level, cnt):
     for i in range(1, K+1):
         if level == 0 or path[-1] != i:
             new_cnt = 1
-        else:
+        elif cnt < 2:
             new_cnt = cnt + 1
+        else:
+            continue
 
         path.append(i)
         backtracking(new_level, new_cnt)
