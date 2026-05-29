@@ -8,9 +8,10 @@ coins.sort()
 
 for i in range(1, M+1):
     for coin in coins:
-        if i < coin:
+        before = i - coin
+        if before < 0:
             break
-        if cnt[i - coin] > -1:
-            cnt[i] = max(cnt[i], cnt[i-coin] + 1)
+        if cnt[before] > -1:
+            cnt[i] = max(cnt[i], cnt[before] + 1)
 
 print(cnt[-1])
