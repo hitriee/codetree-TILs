@@ -5,26 +5,31 @@ nums = list(map(int, input().split()))
 max_score = 0
 arr = [1] * k
 
-def backtracking(level):
+def backtracking(level, score):
     global max_score
 
+    if score == k:
+        max_score = k
+        return
+
     if level == n:
-        score = 0
-        for i in range(k):
-            if arr[i] >= m:
-                score += 1
-        
         if max_score < score:
             max_score = score
         return
 
     new_level = level + 1
+    val = nums[level]
     for i in range(k):
-        arr[i] += nums[level]
-        
-        backtracking(new_level)
-        
-        arr[i] -= nums[level]
+        if arr[i] < m:
+            arr[i] += val
+            new_score = score
 
-backtracking(0)
+            if arr[i] >= m:
+                new_score += 1
+            
+            backtracking(new_level, new_score)
+            
+            arr[i] -= val
+
+backtracking(0, 0)
 print(max_score)
