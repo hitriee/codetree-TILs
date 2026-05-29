@@ -7,9 +7,12 @@ arr = [1] * k
 
 def backtracking(level, score):
     global max_score
+    
+    if score == k:
+        max_score = k
+        return
 
     if level == n:
-        # print(arr)
         if max_score < score:
             max_score = score
         return
@@ -17,10 +20,12 @@ def backtracking(level, score):
     new_level = level + 1
     for i in range(k):
         val = arr[i]
+        if val >= m:
+            continue
         
         new_val = val + nums[level]
         
-        new_score = score + 1 if val < m and new_val >= m else score
+        new_score = score + 1 if new_val >= m else score
         
         arr[i] = new_val
         
