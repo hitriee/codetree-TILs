@@ -3,8 +3,6 @@ K, N = map(int, input().split())
 # Please write your code here.
 path = []
 def backtracking(level, cnt):
-    if cnt >= 3:
-        return
     if level == N:
         print(*path)
         return
