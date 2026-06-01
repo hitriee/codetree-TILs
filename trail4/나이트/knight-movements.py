@@ -2,11 +2,11 @@ n = int(input())
 r1, c1, r2, c2 = map(lambda x: int(x) - 1, input().split())
 
 # Please write your code here.
-dy, dx = (-2, -2, -1, -1, 1, 1, 2, 2), (-1, 1, -2, 2, -2, 2, -1, 1)
 
 def bfs():
     from collections import deque
     
+    dy, dx = (-2, -2, -1, -1, 1, 1, 2, 2), (-1, 1, -2, 2, -2, 2, -1, 1)
     q = deque()
     visited = [[False] * n for _ in range(n)]
     q.append((r1, c1, 0))
