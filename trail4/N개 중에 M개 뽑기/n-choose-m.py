@@ -2,14 +2,19 @@ N, M = map(int, input().split())
 
 # Please write your code here.
 path = []
-def backtracking(level, start):
-    if level == M:
-        print(*path)
+answer = []
+def backtracking(level, cnt):
+    if level == N:
+        if cnt == M:
+            answer.append(' '.join(path))
         return
     
-    for i in range(start, N+1):
-        path.append(i)
-        backtracking(level+1, i+1)
-        path.pop()
+    backtracking(level+1, cnt)
 
-backtracking(0, 1)
+    path.append(str(level+1))
+    backtracking(level+1, cnt+1)
+    path.pop()
+
+backtracking(0, 0)
+
+print('\n'.join(answer[::-1]))
