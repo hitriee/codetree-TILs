@@ -31,10 +31,10 @@ def main():
     
     # 시공의 돌풍 위치와 이동 순서 찾기
     def find_order():
-        for k in range(2, n-1):
+        ccw, cw = [], []
+        for k in range(2, n-2):
             if area[k][0] == -1:
                 y1, y2 = k, k+1
-                ccw, cw = [], []
                 for j in range(1, m):
                     ccw.append((y1, j))
                     cw.append((y2, j))
