@@ -26,6 +26,8 @@ def main():
         for i in range(length):
             ny, nx = arr[i]
             val, area[ny][nx] = area[ny][nx], val
+        
+        return val
     
     # 시공의 돌풍 위치와 이동 순서 찾기
     def find_order():
@@ -60,19 +62,14 @@ def main():
     n, m, t = map(int, input().split())
     area = [list(map(int, input().split())) for _ in range(n)]
     dy, dx = (-1, 0, 1, 0), (0, -1, 0, 1)
+    total = sum([sum(area[i]) for i in range(n)]) + 2
     ccw, cw = find_order()
     len_ccw, len_cw = len(ccw), len(cw)
     
     for _ in range(t):
         area = spread()
-        clean(len_ccw, ccw)
-        clean(len_cw, cw)
-    
-    total = 0
-    for i in range(n):
-        for j in range(m):
-            total += area[i][j]
+        total -= (clean(len_ccw, ccw) + clean(len_cw, cw))
 
-    return total + 2
+    return total
 
 print(main())
