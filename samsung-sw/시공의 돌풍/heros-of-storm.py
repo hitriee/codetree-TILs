@@ -17,19 +17,14 @@ def main():
         return [temp[i][:] for i in range(n)]
 
     # 시공의 돌풍 청소
-    def clean():
+    def clean(length, arr):
         # 위칸에서는 반시계 방향, 아래칸에서는 시계 방향
         # 바람이 불면 먼지가 바람의 방향대로 한 칸씩 이동
         # 시공의 돌풍으로 들어간 먼지는 사라짐
         val = 0
         
-        for i in range(len_ccw):
-            ny, nx = ccw[i]
-            val, area[ny][nx] = area[ny][nx], val
-        
-        val = 0
-        for i in range(len_cw):
-            ny, nx = cw[i]
+        for i in range(length):
+            ny, nx = arr[i]
             val, area[ny][nx] = area[ny][nx], val
     
     # 시공의 돌풍 위치와 이동 순서 찾기
@@ -67,12 +62,11 @@ def main():
     dy, dx = (-1, 0, 1, 0), (0, -1, 0, 1)
     ccw, cw = find_order()
     len_ccw, len_cw = len(ccw), len(cw)
-    # print(ccw)
-    # print(cw)
     
     for _ in range(t):
         area = spread()
-        clean()
+        clean(len_ccw, ccw)
+        clean(len_cw, cw)
     
     total = 0
     for i in range(n):
