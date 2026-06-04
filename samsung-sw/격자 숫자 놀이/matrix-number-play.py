@@ -1,8 +1,8 @@
 def main():
     def calc_row():
         max_m = m
+        cnt = {}
         for i in range(n):
-            cnt = {}
             for j in range(m):
                 num = arr[i][j]
                 if num != 0:
@@ -16,6 +16,8 @@ def main():
 
             if max_m < twice_m:
                 max_m = twice_m
+            
+            cnt.clear()
 
         for i in range(n):
             arr[i].extend([0] * (max_m - len(arr[i])))
@@ -24,8 +26,9 @@ def main():
 
     def calc_col():
         max_n = n
+        cnt = {}
+        
         for j in range(m):
-            cnt = {}
             for i in range(n):
                 num = arr[i][j]
                 if num != 0:
@@ -47,6 +50,7 @@ def main():
 
             if max_n < twice_n:
                 max_n = twice_n
+            cnt.clear()
 
 
         while arr[-1].count(0) == m:
