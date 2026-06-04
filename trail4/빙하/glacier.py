@@ -3,13 +3,11 @@ from collections import deque
 n, m = map(int, input().split())
 a = [list(map(int, input().split())) for _ in range(n)]
 
-# Please write your code here.
 dy, dx = (-1, 0, 1, 0), (0, -1, 0, 1)
-water = deque()
+water, ice = deque(), deque()
 water.append((0, 0))
 visited = [[False] * m for _ in range(n)]
 visited[0][0] = True
-ice = deque()
 duration = last_size = 0
 
 def melt():
@@ -32,10 +30,10 @@ def melt():
 while True:
     melt()
     length = len(water)
-    if length:
-        last_size = length
-    else:
+    if length == 0:
         break
+    
+    last_size = length
     duration += 1
     
 
