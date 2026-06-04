@@ -1,11 +1,4 @@
 def main():
-    def int_input(func=int):
-        return map(func, input().split())
-
-    r, c, k = int_input(lambda x: int(x) - 1)
-    arr = [list(int_input()) for _ in range(3)]
-    k += 1
-
     def calc_row():
         max_m = m
         for i in range(n):
@@ -62,6 +55,12 @@ def main():
 
         return max_n
 
+    def int_input(func=int):
+        return map(func, input().split())
+
+    r, c, k = int_input(lambda x: int(x) - 1)
+    arr = [list(int_input()) for _ in range(3)]
+    k += 1
     n, m = len(arr), len(arr[0])
     for duration in range(101):
         if n > r and m > c and arr[r][c] == k:
