@@ -1,14 +1,5 @@
 from collections import deque
-
-n, m = map(int, input().split())
-a = [list(map(int, input().split())) for _ in range(n)]
-
-dy, dx = (-1, 0, 1, 0), (0, -1, 0, 1)
-water, ice = deque(), deque()
-water.append((0, 0))
-visited = [[False] * m for _ in range(n)]
-visited[0][0] = True
-duration = last_size = 0
+from sys import stdin
 
 def melt():
     while water:
@@ -25,6 +16,20 @@ def melt():
     water.extend(ice)
     ice.clear()
 
+
+
+def int_input():
+    return map(int, stdin.readline().split())
+
+n, m = int_input()
+a = [list(int_input()) for _ in range(n)]
+
+dy, dx = (-1, 0, 1, 0), (0, -1, 0, 1)
+water, ice = deque(), deque()
+water.append((0, 0))
+visited = [[False] * m for _ in range(n)]
+visited[0][0] = True
+duration = last_size = 0
 
 
 while True:
