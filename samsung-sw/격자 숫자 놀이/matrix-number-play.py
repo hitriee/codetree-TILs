@@ -61,7 +61,7 @@ def main():
     r, c, k = int_input(lambda x: int(x) - 1)
     arr = [list(int_input()) for _ in range(3)]
     k += 1
-    n, m = len(arr), len(arr[0])
+    n = m = 3
     for duration in range(101):
         if n > r and m > c and arr[r][c] == k:
             return duration
