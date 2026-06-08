@@ -36,4 +36,3 @@ while q:
 
 else:
     print(-1)
-
