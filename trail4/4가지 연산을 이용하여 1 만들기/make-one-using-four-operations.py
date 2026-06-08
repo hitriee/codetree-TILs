@@ -5,7 +5,7 @@ N = int(input())
 def bfs():
     from collections import deque
 
-    limit = 3 * N + 1
+    limit = 2 * N + 1
     min_cnt = [limit] * limit
 
     q = deque()
