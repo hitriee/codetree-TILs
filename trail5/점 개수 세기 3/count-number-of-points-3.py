@@ -1,6 +1,5 @@
 n, q = map(int, input().split())
 points = list(map(int, input().split()))
-points.sort()
 point_to_idx = {points[i]: i for i in range(n)}
 
 for _ in range(q):
