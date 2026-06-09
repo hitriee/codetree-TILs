@@ -1,17 +1,17 @@
-from sys import stdin
-
 # 이동
 def move():
+    global atoms
+    
     after_move = []
     for y, x in atoms:
         for m, s, d in arr[y][x]:
             ny, nx = (y + s * dy[d]) % N, (x + s * dx[d]) % N
             after_move.append((ny, nx, m, s, d))
     
-    atoms.clear()
+    atoms = set()
     for i in range(N):
         for j in range(N):
-            arr[i][j].clear()
+            arr[i][j] = []
 
     for ny, nx, m, s, d in after_move:
         arr[ny][nx].append((m, s, d))
@@ -54,7 +54,7 @@ def calc_total():
 
 
 def int_input():
-    return map(int, stdin.readline().split())
+    return map(int, input().split())
 
 N, M, K = int_input()
 dy, dx = (-1, -1, 0, 1, 1, 1, 0, -1), (0, 1, 1, 1, 0, -1, -1, -1)
@@ -69,7 +69,8 @@ for _ in range(M):
     atoms.add((y, x))
 
 for _ in range(K):
-    move()
+    move()    
     combine()
 
 print(calc_total())
+
