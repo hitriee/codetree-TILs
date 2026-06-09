@@ -1,3 +1,5 @@
+from sys import stdin
+
 # 이동
 def move():
     after_move = []
@@ -46,7 +48,7 @@ def calc_total():
 
 
 def int_input():
-    return map(int, input().split())
+    return map(int, stdin.readline().split())
 
 N, M, K = int_input()
 dy, dx = (-1, -1, 0, 1, 1, 1, 0, -1), (0, 1, 1, 1, 0, -1, -1, -1)
@@ -54,9 +56,7 @@ arr = [[[] for _ in range(N)] for _ in range(N)]
 
 for _ in range(M):
     y, x, m, s, d = int_input()
-    y -= 1
-    x -= 1
-    arr[y][x].append((m, s, d))
+    arr[y-1][x-1].append((m, s, d))
 
 for _ in range(K):
     move()
