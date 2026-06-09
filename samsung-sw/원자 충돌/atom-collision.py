@@ -1,19 +1,14 @@
 # 이동
 def move():
-    after_move = []
+    temp_set, temp_arr = set(), [[[] for _ in range(N)] for _ in range(N)]
+
     for y, x in atoms:
         for m, s, d in arr[y][x]:
             ny, nx = (y + s * dy[d]) % N, (x + s * dx[d]) % N
-            after_move.append((ny, nx, m, s, d))
+            temp_set.add((ny, nx))
+            temp_arr[ny][nx].append((m, s, d))
     
-    atoms.clear()
-    for i in range(N):
-        for j in range(N):
-            arr[i][j].clear()
-
-    for ny, nx, m, s, d in after_move:
-        arr[ny][nx].append((m, s, d))
-        atoms.add((ny, nx))
+    return temp_set, temp_arr
 
 # 합성
 def combine():
@@ -67,7 +62,7 @@ for _ in range(M):
     atoms.add((y, x))
 
 for _ in range(K):
-    move()
+    atoms, arr = move()
     # print('m', atoms, arr)
     combine()
     # print('c', atoms, arr)
