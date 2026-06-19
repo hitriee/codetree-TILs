@@ -42,10 +42,7 @@ def move(now):
     for i in range(1, M + 1):
         if arrived[i] == 0:
             y, x = turtles[i]
-            visited[y][x] = True
             next_pos = find_path(y, x)
-            visited[y][x] = False
-            path.clear()
             if next_pos:
                 can_move = True
                 ny, nx = next_pos
@@ -127,7 +124,7 @@ sea_info = [list(int_input()) for _ in range(N)]
 press_info = [[0] * N for _ in range(N)]
 heat_info = [[0] * N for _ in range(N)]
 erupted = [False] * K
-turtles, path = [()], []
+turtles = [()]
 arrived = [0] * (M + 1)
 dy, dx = (0, 1, 0, -1), (1, 0, -1, 0)
 
@@ -139,7 +136,6 @@ for num in range(1, M + 1):
 volcano_arr = [list(int_input()) for _ in range(K)]
 
 for now in range(1, 101):
-    visited = [[False] * N for _ in range(N)]
     if move(now):
         erupt()
         make_fossil()
