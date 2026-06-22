@@ -1,17 +1,19 @@
 n = int(input())
-LIMIT = int(2e5)
-arr = [0] * LIMIT
+info = {}
 
 def minus_one(num):
     return int(num) - 1
 
 for _ in range(n):
     s, e = map(minus_one, input().split())
-    arr[s] += 1
-    arr[e] -= 1
+    info[s] = info.get(s, 0) + 1
+    info[e] = info.get(e, 0) - 1
 
-for i in range(1, LIMIT):
-    arr[i] += arr[i-1]
 
-print(max(arr))
+keys = sorted(info)
+m = len(keys)
+for i in range(1, m):
+    info[keys[i]] += info[keys[i-1]]
+
+print(max(info.values()))
 
