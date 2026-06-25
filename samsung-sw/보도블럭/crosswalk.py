@@ -1,60 +1,48 @@
-def int_input():
-    return map(int, input().split())
+from sys import stdin
 
-def can_pass(now, before, length, to_bottom):
-    break_flag = False
-    if now == before:
-        length += 1
-    elif now == before - 1:
-        if to_bottom:
-            if length < L:
-                break_flag = True
-        else:
-            to_bottom = True
+def int_input():
+    return map(int, stdin.readline().split())
+
+def can_pass(option):
+    cnt = 0
+    for i in range(N):
+        before = heights[i][0] if option == 'row' else heights[0][i]
+        to_bottom = False
         length = 1
-    elif now == before + 1:
-        if to_bottom:
-            if length < 2*L:
-                break_flag = True
-            to_bottom = False
+        for j in range(1, N):
+            now = heights[i][j] if option == 'row' else heights[j][i]
+            if now == before:
+                length += 1
+            elif now == before - 1:
+                if to_bottom:
+                    if length < L:
+                        break
+                else:
+                    to_bottom = True
+                length = 1
+            elif now == before + 1:
+                if to_bottom:
+                    if length < 2*L:
+                        break
+                    to_bottom = False
+                else:
+                    if length < L:
+                        break
+                length = 1
+            else:
+                break
+            before = now
         else:
-            if length < L:
-                break_flag = True
-            length = 1
-    else:
-        break_flag = True
-    
-    return (length, to_bottom, break_flag)
+            if not to_bottom or length >= L:
+                cnt += 1
+    return cnt
 
 
 N, L = int_input()
 heights = [list(int_input()) for _ in range(N)]
 total_cnt = 0
 
-for i in range(N):
-    before, length = heights[i][0], 1
-    to_bottom = False
-    for j in range(1, N):
-        now = heights[i][j]
-        length, to_bottom, break_flag = can_pass(now, before, length, to_bottom)
-        if break_flag:
-            break
-        before = now
-    else:
-        if not to_bottom or length >= L:
-            total_cnt += 1
-
-for j in range(N):
-    before, length = heights[0][j], 1
-    to_bottom = False
-    for i in range(1, N):
-        now = heights[i][j]
-        length, to_bottom, break_flag = can_pass(now, before, length, to_bottom)
-        if break_flag:
-            break
-        before = now
-    else:
-        if not to_bottom or length >= L:
-            total_cnt += 1
+total_cnt += can_pass('row')
+total_cnt += can_pass('col')
 
 print(total_cnt)
