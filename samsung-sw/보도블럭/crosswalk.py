@@ -5,7 +5,7 @@ def can_pass(option):
     cnt = 0
     for i in range(N):
         before = heights[i][0] if option == 'row' else heights[0][i]
-        to_top = to_bottom = False
+        to_bottom = False
         length = 1
         for j in range(1, N):
             now = heights[i][j] if option == 'row' else heights[j][i]
@@ -14,10 +14,8 @@ def can_pass(option):
             elif now == before - 1:
                 if to_bottom and length < L:
                     break
-                to_top = False
                 to_bottom = True
                 length = 1
-            # 높아짐
             elif now == before + 1:
                 if to_bottom:
                     if length < 2*L:
@@ -26,7 +24,6 @@ def can_pass(option):
                     break
                 to_bottom = False
                 length = 1
-                to_top = True
             else:
                 break
             before = now
