@@ -12,17 +12,20 @@ def can_pass(option):
             if now == before:
                 length += 1
             elif now == before - 1:
-                if to_bottom and length < L:
-                    break
-                to_bottom = True
+                if to_bottom:
+                    if length < L:
+                        break
+                else:
+                    to_bottom = True
                 length = 1
             elif now == before + 1:
                 if to_bottom:
                     if length < 2*L:
                         break
-                elif length < L:
-                    break
-                to_bottom = False
+                    to_bottom = False
+                else:
+                    if length < L:
+                        break
                 length = 1
             else:
                 break
