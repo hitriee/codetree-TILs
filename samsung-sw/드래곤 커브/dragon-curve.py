@@ -39,11 +39,9 @@ def can_link(i, j):
 N = int(input())
 arr = [[False] * 101 for _ in range(101)]
 dy, dx = (0, -1, 0, 1), (1, 0, -1, 0)
-delta = [(0, 0), (-1, -1)]
 
 for _ in range(N):
-    y, x, d, g = map(int, input().split())
-    make_curve(y, x, d, g)
+    make_curve(*map(int, input().split()))
     
 
 print(count_rectangle())
