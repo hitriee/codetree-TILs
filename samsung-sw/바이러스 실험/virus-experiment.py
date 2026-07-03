@@ -12,20 +12,20 @@ def grow_or_dead():
                 for year in years:
                     val, cnt, new_year = arr[i][j], kind_of[year], year+1
                     if val >= cnt * year:
-                        # 양분 섭취
-                        arr[i][j] -= year * cnt
-                        new_kind_of[new_year] = cnt
-                        if new_year % 5 == 0:
-                            five_arr.append((i, j, cnt))
+                        new_cnt, dead_cnt = cnt, 0
                     else:
-                        quot = arr[i][j] // year
-                        if quot != 0:
-                            # 양분 섭취
-                            arr[i][j] -= year * quot
-                            new_kind_of[new_year] = quot
-                            if new_year % 5 == 0:
-                                five_arr.append((i, j, quot))
-                        dead_virus.append((i, j, (year // 2) * (cnt - quot)))
+                        quot = val // year
+                        new_cnt, dead_cnt = quot, cnt - quot
+                        
+                    if new_cnt != 0:
+                        # 양분 섭취
+                        arr[i][j] -= year * new_cnt
+                        new_kind_of[new_year] = new_cnt
+                        if new_year % 5 == 0:
+                            five_arr.append((i, j, new_cnt))
+                    
+                    if dead_cnt > 0:
+                        dead_virus.append((i, j, (year // 2) * dead_cnt))
                 virus[i][j] = dict(new_kind_of)
     
     for i, j, val in dead_virus:
