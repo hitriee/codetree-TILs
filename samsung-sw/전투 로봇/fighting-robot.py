@@ -11,9 +11,6 @@ def find_position():
             elif level > 0:
                 monsters[level].append((i, j))
                 cnt += 1
-
-    for i in range(1, 7):
-        monsters[i].sort()
     
     return (cnt, *position)
 
