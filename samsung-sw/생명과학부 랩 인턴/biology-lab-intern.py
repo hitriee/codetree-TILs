@@ -39,9 +39,6 @@ def move(idx, limit):
             y, x, s, d, b = info[i]
             board[y][x] = []
             ny, nx = y + s * dy[d], x + s * dx[d]
-            # if in_range(ny, nx):
-            #     y, x = ny, nx
-            # else:
             y, x, d = find_new_pos(ny, nx, d)
 
             new_info.append((y, x, s, d, b))
@@ -84,7 +81,7 @@ N, M, k = int_input()
 board = [[[] for _ in range(M)] for _ in range(N)]
 dy, dx = (-1, 1, 0, 0), (0, 0, 1, -1)
 info = []
-converted_pos = [0, N - 1, 0, M - 1]
+
 for i in range(k):
     y, x, s, d, b = int_input(minus_one)
     info.append((y, x, s + 1, d, b + 1))
@@ -105,4 +102,3 @@ for j in range(M):
 
 # 채취한 곰팡이 크기의 총 합
 print(total_size)
-
