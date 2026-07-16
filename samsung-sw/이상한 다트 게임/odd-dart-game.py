@@ -4,54 +4,56 @@ def int_input():
     return map(int, input().split())
 
 def remove():
-    removed_total = minus = 0
+
+    removed_total = 0
     minus_set = set()
-    if total:
-        for j in range(M):
-            number = arr[0][j]
-            if number:
-                nj = (j-1) % M
-                if arr[0][nj] == number:
-                    
-                    minus_set.add((0, nj))
-                    minus_set.add((0, j))
+    
+    for j in range(M):
+        number = arr[0][j]
+        if number:
+            nj = (j-1) % M
+            if arr[0][nj] == number:
+                minus_set.add((0, nj))
+                minus_set.add((0, j))
+            
                 
-                    
-        for i in range(1, N):
+    for i in range(1, N):
+        for j in range(M):
+            number = arr[i][j]
+            if number:
+                has_same_num = False
+                for idx in range(2):
+                    ni, nj = (i+di[idx]) % N, (j+dj[idx]) % M
+                    if arr[ni][nj] == number:
+                        minus_set.add((ni, nj))
+                        has_same_num = True
+                if has_same_num:
+                    minus_set.add((i, j))
+                
+    if minus_set:
+        for i, j in minus_set:
+            removed_total += arr[i][j]
+            arr[i][j] = 0
+    else:
+        avg = total // cnt
+        
+        for i in range(N):
             for j in range(M):
                 number = arr[i][j]
                 if number:
-                    has_same_num = False
-                    for idx in range(2):
-                        ni, nj = (i+di[idx]) % N, (j+dj[idx]) % M
-                        if arr[ni][nj] == number:
-                            minus_set.add((ni, nj))
-                            has_same_num = True
-                    if has_same_num:
-                        minus_set.add((i, j))
-                    
-        if minus_set:
-            for i, j in minus_set:
-                removed_total += arr[i][j]
-                arr[i][j] = 0
-        else:
-            avg = total // cnt
-            
-            for i in range(N):
-                for j in range(M):
-                    number = arr[i][j]
-                    if number:
-                        if number > avg:
-                            arr[i][j] -= 1
-                            removed_total += 1
-                        elif number < avg:
-                            arr[i][j] += 1
-                            removed_total -= 1
+                    if number > avg:
+                        arr[i][j] -= 1
+                        removed_total += 1
+                    elif number < avg:
+                        arr[i][j] += 1
+                        removed_total -= 1
         
     return (len(minus_set), removed_total)
 
 
 def rotate(x, d, k):
+    if total == 0:
+        return (0, 0)
     for i in range(x-1, N, x):
         temp = arr[i]
         if d == 0:
