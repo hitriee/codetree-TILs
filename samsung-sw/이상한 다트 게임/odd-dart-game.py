@@ -3,11 +3,8 @@ from collections import deque
 def int_input():
     return map(int, input().split())
 
-def remove():
-
-    removed_total = 0
+def fill_minus_set():
     minus_set = set()
-    
     for j in range(M):
         number = arr[0][j]
         if number:
@@ -29,24 +26,37 @@ def remove():
                         has_same_num = True
                 if has_same_num:
                     minus_set.add((i, j))
+
+    return minus_set
+
+def normalize():
+    avg = total // cnt
+    removed_total = 0
+
+    for i in range(N):
+        for j in range(M):
+            number = arr[i][j]
+            if number:
+                if number > avg:
+                    arr[i][j] -= 1
+                    removed_total += 1
+                elif number < avg:
+                    arr[i][j] += 1
+                    removed_total -= 1
+    return removed_total
+
+
+def remove():
+
+    removed_total = 0
+    minus_set = fill_minus_set()
                 
     if minus_set:
         for i, j in minus_set:
             removed_total += arr[i][j]
             arr[i][j] = 0
     else:
-        avg = total // cnt
-        
-        for i in range(N):
-            for j in range(M):
-                number = arr[i][j]
-                if number:
-                    if number > avg:
-                        arr[i][j] -= 1
-                        removed_total += 1
-                    elif number < avg:
-                        arr[i][j] += 1
-                        removed_total -= 1
+        removed_total = normalize()
         
     return (len(minus_set), removed_total)
 
@@ -54,6 +64,7 @@ def remove():
 def rotate(x, d, k):
     if total == 0:
         return (0, 0)
+    
     for i in range(x-1, N, x):
         temp = arr[i]
         if d == 0:
