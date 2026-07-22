@@ -50,7 +50,7 @@ def bfs():
 
     q = deque()
     visited = [[False] * M  for _ in range(M)]
-    max_cnt = 0
+    max_cnt = total = 0
     for i in range(M):
         for j in range(M):
             if not visited[i][j] and area[i][j]:
@@ -60,6 +60,7 @@ def bfs():
                 while q:
                     y, x = q.popleft()
                     cnt += 1
+                    total += area[y][x]
 
                     for k in range(4):
                         ny, nx = y+dy[k], x+dx[k]
@@ -70,7 +71,7 @@ def bfs():
                 if cnt > max_cnt:
                     max_cnt = cnt
 
-    return max_cnt
+    return f'{total}\n{max_cnt}'
 
 
 N, _ = int_input()
@@ -82,14 +83,12 @@ area = [list(int_input()) for _ in range(levels[-1])]
 queries = list(int_input())
 start_y, start_x = (0, 0, 1, 1), (0, 1, 1, 0)
 dy, dx = (0, 1, 0, -1), (1, 0, -1, 0)
-total = sum([sum(area[i]) for i in range(M)])
 
 for num in queries:
     if num != 0:
         new_area = [[0] * M for _ in range(M)]
         divide_conquer(M, levels[num], 0, 0)
         area = [new_area[i][:] for i in range(M)]
-    total -= melt()
+    melt()
 
-print(total)
 print(bfs())
