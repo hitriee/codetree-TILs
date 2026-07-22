@@ -7,26 +7,24 @@ def in_range(y, x):
 def divide_conquer(now, target, ly, lx):
     if now == target:
         half = now // 2
-        temp = [list(area[i][lx:lx + half]) for i in range(ly, ly + half)]
-        for k in range(3, 0, -1):
+        for k in range(4):
             nly, nlx = ly + start_y[k] * half, lx + start_x[k] * half
-            arr = [list(area[i][nlx:nlx + half]) for i in range(nly, nly + half)]
-            rotate(nly, nlx, half, k, arr)
-        rotate(ly, lx, half, 0, temp)
+            rotate(nly, nlx, half, k)
+        
         return
 
     half = now // 2
-    for k in range(3, -1, -1):
+    for k in range(4):
         nly, nlx = ly + start_y[k] * half, lx + start_x[k] * half
         divide_conquer(half, target, nly, nlx)
 
-def rotate(s_i, s_j, length, idx, arr):
+def rotate(s_i, s_j, length, idx):
     di, dj = dy[idx] * length, dx[idx] * length
     for i in range(s_i, s_i + length):
         ni = i + di
         for j in range(s_j, s_j + length):
             nj = j + dj
-            area[ni][nj] = arr[i - s_i][j - s_j]
+            new_area[ni][nj] = area[i][j]
 
 
 def melt():
@@ -87,7 +85,9 @@ dy, dx = (0, 1, 0, -1), (1, 0, -1, 0)
 
 for num in queries:
     if num != 0:
+        new_area = [[0] * M for _ in range(M)]
         divide_conquer(M, levels[num], 0, 0)
+        area = [new_area[i][:] for i in range(M)]
     melt()
 
 print(bfs())
