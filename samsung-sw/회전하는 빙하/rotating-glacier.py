@@ -36,9 +36,8 @@ def melt():
                     ny, nx = y+dy[k], x+dx[k]
                     if not in_range(ny, nx) or area[ny][nx] == 0:
                         cnt += 1
-                        if cnt >= 2:
-                            path.append((y, x))
-                            break
+                if cnt >= 2:
+                    path.append((y, x))
 
     for y, x in path:
         area[y][x] -= 1
@@ -46,6 +45,7 @@ def melt():
 
 def bfs():
     from collections import deque
+    
     q = deque()
     visited = [[False] * M  for _ in range(M)]
     max_cnt = total = 0
