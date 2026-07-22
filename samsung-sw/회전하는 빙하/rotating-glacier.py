@@ -22,7 +22,7 @@ def rotate(s_i, s_j, length, idx):
     di, dj = dy[idx] * length, dx[idx] * length
     nj = s_j + dj
     for i in range(s_i, s_i + length):
-        ni, nj = i + di, s_j + dj
+        ni = i + di
         new_area[ni][nj : nj+length] = area[i][s_j : s_j+length]
 
 
