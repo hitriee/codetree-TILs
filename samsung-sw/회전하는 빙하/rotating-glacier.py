@@ -41,14 +41,16 @@ def melt():
 
     for y, x in path:
         area[y][x] -= 1
+    
+    return len(path)
 
 
 def bfs():
     from collections import deque
-    
+
     q = deque()
     visited = [[False] * M  for _ in range(M)]
-    max_cnt = total = 0
+    max_cnt = 0
     for i in range(M):
         for j in range(M):
             if not visited[i][j] and area[i][j]:
@@ -57,7 +59,6 @@ def bfs():
                 q.append((i, j))
                 while q:
                     y, x = q.popleft()
-                    total += area[y][x]
                     cnt += 1
 
                     for k in range(4):
@@ -69,7 +70,7 @@ def bfs():
                 if cnt > max_cnt:
                     max_cnt = cnt
 
-    return f'{total}\n{max_cnt}'
+    return max_cnt
 
 
 N, _ = int_input()
@@ -81,12 +82,14 @@ area = [list(int_input()) for _ in range(levels[-1])]
 queries = list(int_input())
 start_y, start_x = (0, 0, 1, 1), (0, 1, 1, 0)
 dy, dx = (0, 1, 0, -1), (1, 0, -1, 0)
+total = sum([sum(area[i]) for i in range(M)])
 
 for num in queries:
     if num != 0:
         new_area = [[0] * M for _ in range(M)]
         divide_conquer(M, levels[num], 0, 0)
         area = [new_area[i][:] for i in range(M)]
-    melt()
+    total -= melt()
 
+print(total)
 print(bfs())
