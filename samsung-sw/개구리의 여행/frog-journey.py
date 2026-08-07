@@ -13,6 +13,17 @@ def in_range(y, x):
     return 0 <= y < N and 0 <= x < N
 
 
+def conf_duration(new_duration, j, jump, before):
+    if j > jump:
+        new_duration += j * j
+    elif j < jump:
+        new_duration += 1
+
+    if new_duration < before:
+        return new_duration
+    return -1
+
+
 def calc_duration(r1, c1, r2, c2):
     heap = []
     min_duration = [[[max_duration] * 6 for _ in range(N)] for _ in range(N)]
@@ -28,13 +39,8 @@ def calc_duration(r1, c1, r2, c2):
             limit = min(jump + 2, 6)
             # 점프력 변경
             for j in range(1, limit):
-                new_duration = duration
-                if j > jump:
-                    new_duration += j * j
-                elif j < jump:
-                    new_duration += 1
-
-                if new_duration < min_duration[y][x][j]:
+                new_duration = conf_duration(duration, j, jump, min_duration[y][x][j])
+                if new_duration != -1:
                     heappush(heap, (new_duration, j, y, x))
                     min_duration[y][x][j] = new_duration
 
@@ -55,14 +61,8 @@ def calc_duration(r1, c1, r2, c2):
                         break
 
                     if val == '.':
-                        new_duration = duration + 1
-
-                        if j < jump:
-                            new_duration += 1
-                        elif j > jump:
-                            new_duration += j*j
-
-                        if min_duration[ny][nx][j] > new_duration:
+                        new_duration = conf_duration(duration + 1, j, jump, min_duration[ny][nx][j])
+                        if new_duration != -1:
                             heappush(heap, (new_duration, j, ny, nx))
                             min_duration[ny][nx][j] = new_duration
 
