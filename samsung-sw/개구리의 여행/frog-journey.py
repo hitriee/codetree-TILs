@@ -20,7 +20,6 @@ def calc_duration(r1, c1, r2, c2):
     min_duration[r1][c1][1] = 0
 
     while heap:
-        # print(heap)
         duration, jump, y, x = heappop(heap)
         if y == r2 and x == c2:
             return duration
@@ -66,10 +65,6 @@ def calc_duration(r1, c1, r2, c2):
                         if min_duration[ny][nx][j] > new_duration:
                             heappush(heap, (new_duration, j, ny, nx))
                             min_duration[ny][nx][j] = new_duration
-                # else:
-                #     for j in range(jump+2, 6):
-                #
-
 
 
     return -1
@@ -79,6 +74,6 @@ N = int(input())
 pond = [input() for _ in range(N)]
 Q = int(input())
 dy, dx = (-1, 0, 1, 0), (0, -1, 0, 1)
-max_duration = int(1e9)
+max_duration = int(1e6)
 for _ in range(Q):
     print(calc_duration(*minus_one_input()))
