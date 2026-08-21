@@ -79,8 +79,8 @@ def find_min_dif():
     min_dif = 40000
     for i in range(2, N):
         for j in range(1, N):
-            for h in range(1, N):
-                for w in range(1, N):
+            for h in range(1, i+1):
+                for w in range(1, j+1):
                     edges = make_rectangle(i, j, h, w)
                     if edges:
                         dif = calc_dif([h-1, w-1], edges)
