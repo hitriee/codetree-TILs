@@ -49,22 +49,25 @@ def calc_dif(len_arr, edges):
         j = (i+1) % 4
         
         ny, nx = y, x
+        dy1, dx1 = dy_a[j], dx_a[j]
+        dy2, dx2 = dy_a[i], dx_a[i]
         while in_range(ny, nx):
             area[ny][nx] = i
-            r, c = ny + dy_a[j], nx + dx_a[j]
+            r, c = ny + dy1, nx + dx1
             if in_range(r, c):
                 start_arr[i].append((r, c))
                 area[r][c] = i
             
-            ny += dy_a[i]
-            nx += dx_a[i]
+            ny += dy2
+            nx += dx2
         
         area[y][x] = 4
         start_arr[-1].append((y, x))
         
+        dy3, dx3 = dy_r[i], dx_r[i]
         for _ in range(len_arr[i%2]):
-            y += dy_r[i]
-            x += dx_r[i]
+            y += dy3
+            x += dx3
             area[y][x] = 4
             start_arr[-1].append((y, x))
     
@@ -76,7 +79,6 @@ def find_min_dif():
     min_dif = 40000
     for i in range(2, N):
         for j in range(1, N):
-            # i, j = 2, 1
             for h in range(1, N):
                 for w in range(1, N):
                     edges = make_rectangle(i, j, h, w)
