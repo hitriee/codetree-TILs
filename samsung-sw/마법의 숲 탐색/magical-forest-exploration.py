@@ -1,7 +1,8 @@
+from sys import stdin
 from collections import deque
 
 def int_input():
-    return map(int, input().split())
+    return map(int, stdin.readline().split())
 
 def in_range(y, x):
     return 0 <= y < R+3 and 1 <= x < C+1
@@ -20,7 +21,7 @@ def can_move(i, r, c):
     return True
 
 def initiate():
-    for i in range(3, R+3):
+    for i in range(R+3):
         for j in range(1, C+1):
             forest[i][j] = 0
 
@@ -66,12 +67,12 @@ def find_row(idx, c, d):
     
     if r <= 3:
         initiate()
-        return 0
+        return 2
     
     d %= 4
     
     move_all(idx, r, c, d)
-    return move_inside(idx, r, c) - 2
+    return move_inside(idx, r, c)
 
 
 R, C, K = int_input()
@@ -81,6 +82,6 @@ around_idx = [(2,), (3, 2), (1, 2)]
 delta_arr = [0, -1, 1]
 total = 0
 for idx in range(1, K+1):
-    total += find_row(idx, *int_input())
+    total += find_row(idx, *int_input()) - 2
 
 print(total)
